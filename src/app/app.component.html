@@ -1,2 +1,13 @@
-<h1>Worked!</h1>
-<router-outlet></router-outlet>
+<div class="container">
+  <mat-sidenav-container>
+    <mat-sidenav #sidenav role="navigation" position="end" mode="side">
+      <app-sidenav-list (sidenavClose)="sidenav.close()"></app-sidenav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <app-header (sidenavToggle)="sidenav.toggle()"></app-header>
+      <main>
+        <router-outlet></router-outlet>
+      </main>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

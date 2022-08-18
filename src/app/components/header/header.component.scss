@@ -1,0 +1,65 @@
+mat-toolbar {
+  display: flex;
+  justify-content: space-between;
+  background: transparent;
+
+  div {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  .navigation-logo {
+    display: flex;
+    align-items: flex-end;
+    padding-bottom: 11px;
+    img {
+      width: 30px;
+      height: 27.65px;
+    }
+    h1 {
+      font-family: 'Nico Moji', sans-serif;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 18px;
+      line-height: 18px;
+      color: #FFFFFF;
+
+      margin-bottom: 0;
+      margin-left: 11px;
+    }
+  }
+  .navigation-items {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0;
+    gap: 50px;
+
+    @media(max-width: 859px) {
+      & {
+        gap: 15px;
+      }
+    }
+    li {
+      font-family: 'Arodora Pro', sans-serif;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 18px;
+      line-height: 21px;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      padding: 0 4px;
+      transition: all 0.4s ease-out;
+
+      a {
+        color: #E4E4E4;
+      }
+      &:hover {
+        border-color: #E29500;
+        a {
+          color: white;
+        }
+      }
+    }
+  }
+}
