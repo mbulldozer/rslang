@@ -75,19 +75,19 @@
   }
 
   .item:nth-child(1) .square {
-    background-image: url("../../assets/images/Wormhole.png");
+    background-image: url("../../../assets/images/Wormhole.png");
   }
 
   .item:nth-child(2) .square {
-    background-image: url("../../assets/images/UFO.png");
+    background-image: url("../../../assets/images/UFO.png");
   }
 
   .item:nth-child(3) .square {
-    background-image: url("../../assets/images/Alien.png");
+    background-image: url("../../../assets/images/Alien.png");
   }
 
   .item:nth-child(4) .square {
-    background-image: url("../../assets/images/Rocket.png");
+    background-image: url("../../../assets/images/Rocket.png");
   }
 
   .square {
@@ -134,7 +134,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    background-image: url("../../assets/images/ellipse.svg");
+    background-image: url("../../../assets/images/ellipse.svg");
     background-position: right -80px bottom -25px;
     background-repeat: no-repeat;
     padding-bottom: 380px;
@@ -158,7 +158,7 @@
       content: "";
       width: 450px;
       height: 590px;
-      background: url("../../assets/images/astronaut.png");
+      background: url("../../../assets/images/astronaut.png");
       background-size: cover;
       top: 145px;
       right: 165px;
