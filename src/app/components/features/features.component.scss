@@ -1,7 +1,8 @@
 .features {
   display: flex;
   flex-direction: column;
-  margin-bottom: 50px;
+  max-width: var(--max-width);
+  margin: 0 auto 50px;
 }
 
 h3 {
@@ -69,8 +70,18 @@ h3 {
   }
 }
 
-::ng-deep .mat-tab-group.mat-primary .mat-ink-bar {
-  background-color: rgba(0, 196, 240, 0.8);
+::ng-deep {
+  .mat-tab-group.mat-primary .mat-ink-bar {
+    background-color: rgba(0, 196, 240, 0.8);
+  }
+
+  .mat-tab-nav-bar, .mat-tab-header {
+    border-bottom: 1px solid rgba(255,255,255,.12);
+  }
+
+  .mat-tab-label .mat-tab-label-content {
+    color: #FFFFFF;
+  }
 }
 
 @media(max-width: 1199px) {

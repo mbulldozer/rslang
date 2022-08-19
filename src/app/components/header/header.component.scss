@@ -2,6 +2,8 @@ mat-toolbar {
   display: flex;
   justify-content: space-between;
   background: transparent;
+  max-width: var(--max-width);
+  margin: 0 auto 50px;
 
   div {
     display: flex;

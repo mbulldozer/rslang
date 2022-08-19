@@ -30,6 +30,10 @@ $my-theme: mat.define-light-theme((
   src: local("Arodora Pro"), url(./assets/fonts/ArodoraPro-Light.otf) format("truetype");
 }
 
+:root {
+  --max-width: 1400px;
+}
+
 * {
   box-sizing: border-box;
 }
