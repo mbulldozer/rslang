@@ -1,0 +1,57 @@
+<app-pop-up 
+  *ngIf="formShow"
+  (hidePopUp)="closeForm()"
+>
+  <app-pre-loader *ngIf="isLoad"></app-pre-loader>
+  <form 
+    [formGroup]="isRegistration ? registerData : loginData" 
+    class="form" 
+    #form="ngForm" 
+    novalidate
+  >
+    <mat-list>
+      <h2 mat-subheader>{{ isRegistration ? 'Registration' : 'Authorization' }}</h2>
+      <mat-list-item *ngIf="isRegistration">
+        <mat-form-field appearance="outline">
+          <mat-label>Enter your name</mat-label>
+          <input matInput placeholder="Pitter" formControlName="name" [required]="isRegistration">
+          <button mat-icon-button matSuffix disabled></button>
+        </mat-form-field>
+      </mat-list-item>
+      <mat-list-item>
+        <mat-form-field appearance="outline">
+          <mat-label>Enter your email</mat-label>
+          <input matInput placeholder="pat@example.com" formControlName="email" required>
+          <button mat-icon-button matSuffix disabled></button>
+        </mat-form-field>
+      </mat-list-item>
+      <mat-list-item>
+        <mat-form-field appearance="outline">
+          <mat-label>Enter your password</mat-label>
+          <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="password" required>
+          <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" type="button">
+            <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
+      </mat-list-item>
+      <mat-list-item *ngIf="errorResponse">
+          <p class="error">{{ errorResponse }}</p>
+      </mat-list-item>
+      <mat-list-item class="btn-group">
+        <button 
+          mat-icon-button
+          type="reset"
+          (click)="isRegistration = !isRegistration; errorResponse = ''"
+        >{{ isRegistration ? 'Authorization' : 'Registration' }}</button>
+        <button 
+          class="btn-group__right"
+          mat-flat-button 
+          color="primary" 
+          (click)="send()"
+          [disabled]="(isRegistration ? registerData : loginData).invalid"
+        >{{ isRegistration ? 'Registration' : 'Login' }}</button>
+      </mat-list-item>
+    </mat-list>
+  </form>
+  
+</app-pop-up>

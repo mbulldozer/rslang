@@ -19,6 +19,22 @@
       <li>
         <a routerLink="/statistics">Statistics</a>
       </li>
+      <li>
+        <button mat-icon-button (click)="startAuth()" *ngIf="!isLogin">
+          <mat-icon color="primary">login</mat-icon>
+        </button>
+        <span *ngIf="isLogin">
+          <button mat-icon-button [matMenuTriggerFor]="menu">
+            <mat-icon color="primary">person</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="logout()">
+              <mat-icon>logout</mat-icon>
+              <span>Sign out</span>
+            </button>
+          </mat-menu>
+        </span>
+      </li>
     </ul>
   </div>
   <div fxHide.gt-xs>
