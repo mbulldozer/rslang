@@ -1,0 +1,15 @@
+<section class="pop-up">
+  <div class="pop-up__close" (click)="close()"></div>
+  <div class="pop-up__content">
+    <button 
+      class="pop-up__close-btn" 
+      mat-mini-fab color="primary" 
+      (click)="close()"
+    >
+      <mat-icon>close</mat-icon>
+    </button>
+    <div class="pop-up__body">
+      <ng-content></ng-content>
+    </div>
+  </div>
+</section>

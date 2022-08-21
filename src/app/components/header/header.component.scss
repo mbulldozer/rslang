@@ -34,6 +34,7 @@ mat-toolbar {
     align-items: flex-start;
     padding: 0;
     gap: 50px;
+    align-items: center;
 
     @media(max-width: 859px) {
       & {
