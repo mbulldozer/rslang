@@ -1,0 +1,91 @@
+.features {
+  display: flex;
+  flex-direction: column;
+  max-width: var(--max-width);
+  margin: 0 auto 50px;
+}
+
+h3 {
+  display: block;
+  font-family: 'Next Art', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 54px;
+  align-items: center;
+  color: #FFFFFF;
+  padding: 0 20px;
+}
+
+.content-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.content {
+  display: flex;
+  width: 700px;
+  background: #2A2A2A;
+  box-shadow: 0 4px 15px rgba(27, 27, 27, 0.28);
+  border-radius: 29px;
+
+  img {
+    width: 300px;
+    height: 300px;
+    border-radius: 29px;
+    margin: 30px;
+  }
+
+  .description {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-right: 30px;
+
+    font-family: 'Arodora Pro', sans-serif;
+    font-style: normal;
+    color: #FFFFFF;
+    text-align: center;
+
+    h4 {
+      font-weight: 300;
+      font-size: 24px;
+      line-height: 29px;
+    }
+
+    p {
+      font-weight: 300;
+      font-size: 18px;
+      line-height: 21px;
+    }
+
+    a {
+      font-weight: 300;
+      font-size: 18px;
+      line-height: 21px;
+      color: #F2994A;
+    }
+  }
+}
+
+::ng-deep {
+  .mat-tab-group.mat-primary .mat-ink-bar {
+    background-color: rgba(0, 196, 240, 0.8);
+  }
+
+  .mat-tab-nav-bar, .mat-tab-header {
+    border-bottom: 1px solid rgba(255,255,255,.12);
+  }
+
+  .mat-tab-label .mat-tab-label-content {
+    color: #FFFFFF;
+  }
+}
+
+@media(max-width: 1199px) {
+  h3 {
+    text-align: center;
+  }
+}

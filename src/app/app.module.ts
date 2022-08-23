@@ -16,6 +16,8 @@ import PopUpComponent from './components/pop-up/pop-up.component';
 import AuthComponent from './components/auth/auth.component';
 import AuthService from './services/auth.service';
 import { PreLoaderComponent } from './components/pre-loader/pre-loader.component';
+import FeaturesComponent from './components/features/features.component';
+import FooterComponent from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,8 @@ import { PreLoaderComponent } from './components/pre-loader/pre-loader.component
     PopUpComponent,
     AuthComponent,
     PreLoaderComponent,
+    FeaturesComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
