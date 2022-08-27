@@ -10,6 +10,7 @@ import AppComponent from './app.component';
 import HomeComponent from './pages/home/home.component';
 import HeaderComponent from './components/header/header.component';
 import SidenavListComponent from './components/sidenav-list/sidenav-list.component';
+import TextbookComponent from './pages/textbook/textbook.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import SidenavListComponent from './components/sidenav-list/sidenav-list.compone
     HomeComponent,
     HeaderComponent,
     SidenavListComponent,
+    TextbookComponent,
   ],
   imports: [
     BrowserModule,

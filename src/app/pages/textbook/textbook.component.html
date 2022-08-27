@@ -1,0 +1,32 @@
+<section>
+    <div class="book">
+        <div class="book__item" (click)="levelA1()">
+            <span class="book__item__text">A1</span>
+            <div class="book__item__image"></div>
+        </div>
+        <div class="book__item" (click)="levelA2()">
+            <span class="book__item__text">A2</span>
+            <div class="book__item__image"></div>
+        </div>
+        <div class="book__item" (click)="levelB1()">
+            <span class="book__item__text">B1</span>
+            <div class="book__item__image"></div>
+        </div>
+        <div class="book__item" (click)="levelB2()">
+            <span class="book__item__text">B2</span>
+            <div class="book__item__image"></div>
+        </div>
+        <div class="book__item" (click)="levelC1()">
+            <span class="book__item__text">C1</span>
+            <div class="book__item__image"></div>
+        </div>
+        <div class="book__item" (click)="levelC2()">
+            <span class="book__item__text">C2</span>
+            <div class="book__item__image"></div>
+        </div>
+        <div *ngIf="auth" class="book__item" (click)="diffWords()">
+            <span class="book__item__text">Difficult words</span>
+            <div class="book__item__image"></div>
+        </div>
+    </div>
+</section>

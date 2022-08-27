@@ -1,0 +1,90 @@
+.book {
+    display: flex;
+    padding-top: 5%;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+
+    &__item {
+        overflow: hidden;
+        text-align: center;
+        border: solid 1px rgb(255, 255, 255);
+        border-radius: 10px;
+        width: 150px;
+        height: 250px;
+        cursor: pointer;
+
+        &__image {
+            z-index: 5;
+            width: 350px;
+            height: 350px;
+            background-repeat: no-repeat;
+            opacity: 0.5;
+            filter: grayscale(95%);
+        }
+
+        &__text {
+            z-index: 10;
+            position: relative;
+            top: 110px;
+            font-size: 70px;
+            color: #ffffff;
+            text-shadow:0px 0px 15px #000000;
+        }
+    }
+
+    &__item:hover .book__item__image {
+        opacity: 1;
+        filter: none;
+    }
+
+    &__item:nth-child(7) .book__item__text {
+        top: 100px;
+        font-size: 35px;
+    }
+
+    &__item:nth-child(1) .book__item__image {
+        background-image: url("../../../assets/images/blue_planet.svg");
+        animation: turn-right 170s infinite;
+    }
+
+    &__item:nth-child(2) .book__item__image {
+        background-image: url("../../../assets/images/green_planet.svg");
+        animation: turn-right 170s infinite;
+    }
+
+    &__item:nth-child(3) .book__item__image {
+        background-image: url("../../../assets/images/orange_planet.svg");
+        animation: turn-right 170s infinite;
+    }
+
+    &__item:nth-child(4) .book__item__image {
+        background-image: url("../../../assets/images/pink_planet.svg");
+        animation: turn-right 170s infinite;
+    }
+
+    &__item:nth-child(5) .book__item__image {
+        background-image: url("../../../assets/images/violet_planet.svg");
+        animation: turn-right 170s infinite;
+    }
+
+    &__item:nth-child(6) .book__item__image {
+        background-image: url("../../../assets/images/darkblue_planet.svg");
+        animation: turn-right 170s infinite;
+    }
+
+    &__item:nth-child(7) .book__item__image {
+        background-image: url("../../../assets/images/blue_green_planet.svg");
+        animation: turn-right 170s infinite;
+    }
+
+    @keyframes turn-right {
+        from {
+            transform: rotate(0deg);
+        }
+
+        to {
+            transform: rotate(360deg);
+        }
+    }
+}
