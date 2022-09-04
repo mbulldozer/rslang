@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ThemePalette } from '@angular/material/core';
 import { ProgressSpinnerMode } from '@angular/material/progress-spinner';
-import GamesService from '../../services/games.service';
+import AudioChallengeService from '../../services/audio-challenge.service';
 import AudioService from '../../services/audio.service';
 import GlobalConstants from '../../common/global-constants';
 
@@ -24,7 +24,7 @@ export default class GameResultsComponent {
   skippedAnswers: any[];
 
   constructor(
-    private gamesService: GamesService,
+    private gamesService: AudioChallengeService,
     private audioService: AudioService,
   ) {
     const { correct, wrong, skipped } = this.gamesService.results;

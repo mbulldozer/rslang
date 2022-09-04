@@ -8,7 +8,7 @@ import { IGameState } from '../models/games';
 @Injectable({
   providedIn: 'root',
 })
-export default class GamesService {
+export default class AudioChallengeService {
   private gameState: BehaviorSubject<IGameState> = new BehaviorSubject(GamesConstants.initState);
 
   difficulties: number[] = GamesConstants.difficulties;

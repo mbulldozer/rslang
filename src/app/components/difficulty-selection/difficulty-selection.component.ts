@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import GamesService from '../../services/games.service';
+import AudioChallengeService from '../../services/audio-challenge.service';
 
 @Component({
   selector: 'app-difficulty-selection',
@@ -11,7 +11,7 @@ export default class DifficultySelectionComponent {
 
   selectedDifficulty: string;
 
-  constructor(private gamesService: GamesService) {
+  constructor(private gamesService: AudioChallengeService) {
     this.difficulties = gamesService.getDifficulties();
     this.selectedDifficulty = this.difficulties[0].toString();
   }

@@ -1,25 +1,17 @@
 <section class="audio-challenge">
   <button mat-fab color="accent" class="fullscreen" (click)="toogleFullScreen()">
-    <mat-icon>{{!isFullScreen?'fullscreen':'fullscreen_exit'}}</mat-icon>
+    <mat-icon>{{!isFullScreen ? 'fullscreen' : 'fullscreen_exit'}}</mat-icon>
   </button>
   <app-difficulty-selection *ngIf="stage === 'difficulty-selection'"></app-difficulty-selection>
   <app-game-results *ngIf="stage === 'results'"></app-game-results>
   <div class="game-level" *ngIf="stage === 'level-start' || stage === 'level-end'">
     <mat-progress-bar class="progress-bar" mode="determinate" color="warn" [value]="progress"></mat-progress-bar>
     <div class="content">
-      <div class="audio-wrap">
-        <mat-progress-spinner
-          class="spinner-background"
-          color="accent"
-          mode="determinate"
-          [value]="timer">
-        </mat-progress-spinner>
-        <button mat-fab color="accent" class="audio icon-button-large"
-                *ngIf="stage === 'level-start'"
-                (click)="playWord()">
-          <mat-icon class="audio-icon">volume_up</mat-icon>
-        </button>
-      </div>
+      <button mat-fab color="accent" class="audio icon-button-large"
+              *ngIf="stage === 'level-start'"
+              (click)="playWord()">
+        <mat-icon class="audio-icon">volume_up</mat-icon>
+      </button>
       <mat-card class="word-info" *ngIf="stage === 'level-end'">
         <mat-card-content class="word-info-content">
           <img mat-card-image
