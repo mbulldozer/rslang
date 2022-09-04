@@ -12,9 +12,7 @@ import { Word } from '../models/word';
 export default class TextBookService {
   private pageToMemory: string = '';
 
-  private userId: string = '';
-
-  private userToken: string = '';
+  private difficult: string = '';
 
   constructor(private http: HttpClient) { }
 
@@ -27,33 +25,18 @@ export default class TextBookService {
       .subscribe((resp: Word[]) => { this.loadData$.next(resp); });
   }
 
-  public sendData = async (wordId: string) => {
-    const newUserWord = {
-      difficulty: 'difficult',
-      optional: {},
-    };
-    await fetch(`${GlobalConstants.urlPath}/users/${this.getUserIdFromLocalstorage()}/words/${wordId}`, {
+  sendWord = async (wordId: string, token: string, userId: string, difficulty: string) => {
+    this.difficult = difficulty;
+    await fetch(`${GlobalConstants.urlPath}/users/${userId}/words/${wordId}`, {
       method: 'POST',
-      body: JSON.stringify(newUserWord),
+      body: JSON.stringify({ difficulty: this.difficult, optional: { check: 'one word' } }),
       headers: {
-        Authorization: `Bearer ${this.getUserTokenFromLocalstorage()}`,
+        Authorization: `Bearer ${token}`,
         Accept: 'application/json',
         'Content-Type': 'application/json',
       },
     });
   };
-
-  private getUserIdFromLocalstorage(): string {
-    const local = localStorage.getItem('login') as string;
-    this.userId = JSON.parse(local).userId;
-    return this.userId;
-  }
-
-  private getUserTokenFromLocalstorage(): string {
-    const local = localStorage.getItem('login') as string;
-    this.userToken = JSON.parse(local).token;
-    return this.userToken;
-  }
 
   saveLocalStorage(stage: string, page: string) {
     this.pageToMemory = `[${stage}, ${page}]`;

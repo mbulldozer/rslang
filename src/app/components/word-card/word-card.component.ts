@@ -4,7 +4,6 @@ import TextBookService from 'src/app/services/textbook.service';
 import AuthService from 'src/app/services/auth.service';
 import GlobalConstants from 'src/app/common/global-constants';
 
-
 @Component({
   selector: 'app-word-card',
   templateUrl: './word-card.component.html',
@@ -17,7 +16,13 @@ export default class WordCardComponent implements OnInit {
 
   isLogin: boolean = false;
 
+  token: string = '';
+
+  userId: string = '';
+
   audio: HTMLAudioElement = new Audio();
+
+  server: string = 'https://rs-lang-project-io.herokuapp.com';
 
   constructor(private readonly textBookService: TextBookService, private authService: AuthService) {
     this.translate = false;
@@ -44,7 +49,14 @@ export default class WordCardComponent implements OnInit {
     this.audio.play();
   }
 
-  addToDifficult(id: string) {
-    this.textBookService.sendData(id);
+  addToDifficult(wordId: string) {
+    this.authService.loginData$.subscribe((value) => {
+      console.log(value);
+      if (value) {
+        this.userId = value.userId as string;
+        this.token = value.token as string;
+        this.textBookService.sendWord(wordId, this.token, this.userId, 'difficult');
+      }
+    });
   }
 }
