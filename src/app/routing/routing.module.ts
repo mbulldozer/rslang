@@ -3,10 +3,12 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 
 import HomeComponent from '../pages/home/home.component';
+import GamesComponent from '../pages/games/games.component';
 import AudioChallengeComponent from '../pages/games/audio-challenge/audio-challenge.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
+  { path: 'games', component: GamesComponent },
   { path: 'games/audio-challenge', component: AudioChallengeComponent },
 ];
 
