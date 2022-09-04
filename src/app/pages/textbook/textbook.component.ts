@@ -17,6 +17,10 @@ export default class TextbookComponent implements OnInit {
 
   translated: boolean = false;
 
+  token: string = '';
+
+  userId: string = '';
+
   constructor(private readonly textBookService: TextBookService, private authService: AuthService) {
 
   }
@@ -29,7 +33,9 @@ export default class TextbookComponent implements OnInit {
   protected afterReloadInit() {
     if (localStorage.getItem('page') as string !== null) {
       const [card, page] = JSON.parse(localStorage.getItem('page') as string);
-      this.textBookService.getData(card, page);
+      if (card !== 6) {
+        this.textBookService.getData(card, page);
+      } else { this.drawDifficultWords(); }
       this.cardActive = card + 1;
       this.page = page + 1;
     }
@@ -45,7 +51,7 @@ export default class TextbookComponent implements OnInit {
   paginationLeft() {
     if (this.page !== 1) {
       this.page -= 1;
-      this.textBookService.getData(this.cardActive - 1, this.page);
+      this.textBookService.getData(this.cardActive - 1, this.page - 1);
       this.textBookService.saveLocalStorage(`${this.cardActive - 1}`, `${this.page - 1}`);
     }
   }
@@ -53,7 +59,7 @@ export default class TextbookComponent implements OnInit {
   paginationRight() {
     if (this.page !== 30) {
       this.page += 1;
-      this.textBookService.getData(this.cardActive - 1, this.page);
+      this.textBookService.getData(this.cardActive - 1, this.page - 1);
       this.textBookService.saveLocalStorage(`${this.cardActive - 1}`, `${this.page - 1}`);
     }
   }
@@ -66,5 +72,16 @@ export default class TextbookComponent implements OnInit {
       this.translated = true;
       this.textBookService.isTranslate(true);
     }
+  }
+
+  drawDifficultWords() {
+    this.authService.loginData$.subscribe((value) => {
+      if (value) {
+        this.userId = value.userId as string;
+        this.token = value.token as string;
+        this.textBookService.getAggregateUserWords(this.token, this.userId)
+          .then((resp) => this.textBookService.getCardFromAggregate(resp[0].paginatedResults));
+      }
+    });
   }
 }

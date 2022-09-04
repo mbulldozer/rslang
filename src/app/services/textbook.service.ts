@@ -10,11 +10,17 @@ import { Word } from '../models/word';
 })
 
 export default class TextBookService {
+  private userId: string = '';
+
   private pageToMemory: string = '';
 
   private difficult: string = '';
 
   constructor(private http: HttpClient) { }
+
+  private cardArray: Word[] = [];
+
+  public aggregateDate$ = new Subject<Word[]>();
 
   public loadData$ = new Subject<Word[]>();
 
@@ -29,13 +35,39 @@ export default class TextBookService {
     this.difficult = difficulty;
     await fetch(`${GlobalConstants.urlPath}/users/${userId}/words/${wordId}`, {
       method: 'POST',
-      body: JSON.stringify({ difficulty: this.difficult, optional: { check: 'one word' } }),
+      body: JSON.stringify({ difficulty: this.difficult, optional: {} }),
       headers: {
         Authorization: `Bearer ${token}`,
         Accept: 'application/json',
         'Content-Type': 'application/json',
       },
     });
+  };
+
+  getAllUserWords = async (token: string, userId: string) => {
+    this.userId = userId;
+    const response = await fetch(`${GlobalConstants.urlPath}/users/${this.userId}/words`, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${token}`,
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    });
+    return response.json();
+  };
+
+  getAggregateUserWords = async (token: string, userId: string) => {
+    this.userId = userId;
+    const response = await fetch(`${GlobalConstants.urlPath}/users/${this.userId}/aggregatedWords?wordsPerPage=3600&filter={"$or":[{"userWord.difficulty":"difficult"}]}`, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${token}`,
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    });
+    return response.json();
   };
 
   saveLocalStorage(stage: string, page: string) {
@@ -45,5 +77,9 @@ export default class TextBookService {
 
   isTranslate(status: boolean) {
     this.translateText$.next(status);
+  }
+
+  getCardFromAggregate(data: Word[]) {
+    this.aggregateDate$.next(data);
   }
 }

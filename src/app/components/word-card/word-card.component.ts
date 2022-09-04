@@ -22,7 +22,9 @@ export default class WordCardComponent implements OnInit {
 
   audio: HTMLAudioElement = new Audio();
 
-  server: string = 'https://rs-lang-project-io.herokuapp.com';
+  server: string = GlobalConstants.urlPath;
+
+  difficult: boolean = false;
 
   constructor(private readonly textBookService: TextBookService, private authService: AuthService) {
     this.translate = false;
@@ -31,6 +33,7 @@ export default class WordCardComponent implements OnInit {
 
   ngOnInit(): void {
     this.textBookService.loadData$.subscribe((data) => this.drawCard(data));
+    this.textBookService.aggregateDate$.subscribe((data) => this.drawDifficultCard(data));
     this.textBookService.translateText$.subscribe((status) => this.translation(status));
     this.authService.loginData$.subscribe((data) => { this.isLogin = !!data; });
   }
@@ -40,6 +43,12 @@ export default class WordCardComponent implements OnInit {
   }
 
   drawCard(data: Word[]) {
+    this.difficult = false;
+    this.card = [...data];
+  }
+
+  drawDifficultCard(data: Word[]) {
+    this.difficult = true;
     this.card = [...data];
   }
 
@@ -51,10 +60,10 @@ export default class WordCardComponent implements OnInit {
 
   addToDifficult(wordId: string) {
     this.authService.loginData$.subscribe((value) => {
-      console.log(value);
       if (value) {
         this.userId = value.userId as string;
         this.token = value.token as string;
+        // console.log(this.textBookService.getAllUserWords(this.token, this.userId));
         this.textBookService.sendWord(wordId, this.token, this.userId, 'difficult');
       }
     });

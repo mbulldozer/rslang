@@ -24,14 +24,14 @@
             <span class="book__item__text">C2</span>
             <div class="book__item__image" [ngStyle]= "{ 'filter': cardActive === 6 ? 'none' : '', 'opacity': cardActive === 6 ? '1' : ''}"></div>
         </div>
-        <div *ngIf="isLogin" class="book__item" (click)="chooseChapter(6)">
+        <div *ngIf="isLogin" class="book__item" (click)="chooseChapter(6); drawDifficultWords()">
             <span class="book__item__text">Difficult words</span>
             <div class="book__item__image" [ngStyle]= "{ 'filter': cardActive === 7 ? 'none' : '', 'opacity': cardActive === 7 ? '1' : ''}"></div>
         </div>
     </div>
 
     <div class="control">
-        Translate
+        Translate 
         <label class="switch">
             <input type="checkbox" [checked]="translated" (change)="translate()">
             <span class="slider round"></span>
