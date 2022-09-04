@@ -15,9 +15,10 @@
         <p class="card__description__meaning" *ngIf="translate" [innerHtml]="item.textMeaningTranslate"></p>
         <p  class="card__description__example" *ngIf="translate" [innerHtml]="item.textExampleTranslate"></p>
 
-        <div class="card__buttons" *ngIf="isLogin && !difficult">
-            <button class="card__button-difficult" (click)="addToDifficult(item.id)" >Добавить в сложные</button>
-            <button class="card__button-studied">Изучено</button>
+        <div class="card__buttons" *ngIf="isLogin">
+            <button class="card__button-difficult" (click)="addToDifficult(item.id)" *ngIf="!difficult" >Добавить в сложные</button>
+            <button class="card__button-difficult" (click)="deleteFromDifficult(item._id)" *ngIf="difficult" >Удалить из сложных</button>
+            <button class="card__button-studied" *ngIf="!difficult">Изучено</button>
         </div>
     </div>
 </div>

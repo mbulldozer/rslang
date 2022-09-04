@@ -68,4 +68,15 @@ export default class WordCardComponent implements OnInit {
       }
     });
   }
+
+  deleteFromDifficult(wordId: string) {
+    this.authService.loginData$.subscribe((value) => {
+      if (value) {
+        this.userId = value.userId as string;
+        this.token = value.token as string;
+        this.textBookService.makeWordEasy(wordId, this.token, this.userId, 'easy');
+        this.card.splice(this.card.findIndex((element) => element._id === wordId), 1);
+      }
+    });
+  }
 }

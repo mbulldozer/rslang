@@ -44,6 +44,19 @@ export default class TextBookService {
     });
   };
 
+  makeWordEasy = async (wordId: string, token: string, userId: string, difficulty: string) => {
+    this.difficult = difficulty;
+    await fetch(`${GlobalConstants.urlPath}/users/${userId}/words/${wordId}`, {
+      method: 'PUT',
+      body: JSON.stringify({ difficulty: this.difficult, optional: {} }),
+      headers: {
+        Authorization: `Bearer ${token}`,
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    });
+  };
+
   getAllUserWords = async (token: string, userId: string) => {
     this.userId = userId;
     const response = await fetch(`${GlobalConstants.urlPath}/users/${this.userId}/words`, {
