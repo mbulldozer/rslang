@@ -1,0 +1,67 @@
+.card {
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    max-width: 1170px;
+    width: 100%;
+    overflow: hidden;
+    color: white;
+    
+    &__word {
+        display: flex;
+        gap: 10px;
+    }
+
+    &__audio {
+        background-image: url('../../../assets/images/audio.svg');
+        background-repeat: no-repeat;
+        width: 30px;
+        height: 30px;
+        cursor: pointer;
+    }
+
+    &__image {
+        width: 400px;
+        padding: 0;
+    }
+
+    &__description {
+        padding-left: 25px;
+        
+        &__word {
+            font-size: 32px;
+        }
+        &__transcription {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+    }
+
+    &__buttons {
+        display: flex;
+        gap: 10px;
+    }
+
+    &__button-studied, &__button-difficult {
+        height: 35px;
+        width: 150px;
+        background-color: transparent;
+        border: 1px solid white;
+        border-radius: 5px;
+        color: white;
+        cursor: pointer;
+    }
+
+    &__button-difficult:hover {
+        transition: 0.2s;
+        background-color: rgba(255, 0, 0, 0.5);
+    }
+
+    &__button-studied:hover {
+        transition: 0.2s;
+        background-color: rgba(0, 255, 42, 0.5);
+    }
+    
+}

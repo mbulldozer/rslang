@@ -19,6 +19,7 @@ import AuthService from './services/auth.service';
 import { PreLoaderComponent } from './components/pre-loader/pre-loader.component';
 import FeaturesComponent from './components/features/features.component';
 import FooterComponent from './components/footer/footer.component';
+import WordCardComponent from './components/word-card/word-card.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import FooterComponent from './components/footer/footer.component';
     PreLoaderComponent,
     FeaturesComponent,
     FooterComponent,
+    WordCardComponent,
   ],
   imports: [
     BrowserModule,

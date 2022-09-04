@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import TextBookService from 'src/app/services/textbook.service';
+import AuthService from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-textbook',
@@ -6,44 +8,63 @@ import { Component } from '@angular/core';
   styleUrls: ['./textbook.component.scss'],
 })
 
-export default class TextbookComponent {
-  public auth: boolean;
+export default class TextbookComponent implements OnInit {
+  isLogin: boolean = false;
 
-  private hello: string;
+  cardActive: number = 0;
 
-  constructor() {
-    this.auth = false;
-    this.hello = 'hi';
+  page: number = 1;
+
+  translated: boolean = false;
+
+  constructor(private readonly textBookService: TextBookService, private authService: AuthService) {
+
   }
 
-  protected levelA1() {
-    console.log(this.hello);
+  ngOnInit(): void {
+    this.authService.loginData$.subscribe((data) => { this.isLogin = !!data; });
+    this.afterReloadInit();
   }
 
-  levelA2() {
-    console.log(this.hello);
+  protected afterReloadInit() {
+    if (localStorage.getItem('page') as string !== null) {
+      const [card, page] = JSON.parse(localStorage.getItem('page') as string);
+      this.textBookService.getData(card, page);
+      this.cardActive = card + 1;
+      this.page = page + 1;
+    }
   }
 
-  levelB1() {
-    console.log(this.hello);
+  protected chooseChapter(chapter: number) {
+    this.page = 1;
+    this.cardActive = chapter + 1;
+    this.textBookService.getData(chapter, 0);
+    this.textBookService.saveLocalStorage(`${this.cardActive - 1}`, '0');
   }
 
-  levelB2() {
-    console.log(this.hello);
+  paginationLeft() {
+    if (this.page !== 1) {
+      this.page -= 1;
+      this.textBookService.getData(this.cardActive - 1, this.page);
+      this.textBookService.saveLocalStorage(`${this.cardActive - 1}`, `${this.page - 1}`);
+    }
   }
 
-  levelC1() {
-    console.log(this.hello);
+  paginationRight() {
+    if (this.page !== 30) {
+      this.page += 1;
+      this.textBookService.getData(this.cardActive - 1, this.page);
+      this.textBookService.saveLocalStorage(`${this.cardActive - 1}`, `${this.page - 1}`);
+    }
   }
 
-  levelC2() {
-    console.log(this.hello);
+  translate() {
+    if (this.translated === true) {
+      this.translated = false;
+      this.textBookService.isTranslate(false);
+    } else {
+      this.translated = true;
+      this.textBookService.isTranslate(true);
+    }
   }
-
-  diffWords() {
-    console.log(this.hello);
-  }
-
-  // ngOnInit(): void {
-  // }
 }

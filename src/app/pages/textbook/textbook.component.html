@@ -1,32 +1,53 @@
-<section>
+<section class="textbook">
     <div class="book">
-        <div class="book__item" (click)="levelA1()">
+        <div class="book__item" (click)="chooseChapter(0)">
             <span class="book__item__text">A1</span>
-            <div class="book__item__image"></div>
+            <div class="book__item__image" [ngStyle]= "{ 'filter': cardActive === 1 ? 'none' : '', 'opacity': cardActive === 1 ? '1' : ''}"></div>
         </div>
-        <div class="book__item" (click)="levelA2()">
+        <div class="book__item" (click)="chooseChapter(1)">
             <span class="book__item__text">A2</span>
-            <div class="book__item__image"></div>
+            <div class="book__item__image" [ngStyle]= "{ 'filter': cardActive === 2 ? 'none' : '', 'opacity': cardActive === 2 ? '1' : ''}"></div>
         </div>
-        <div class="book__item" (click)="levelB1()">
+        <div class="book__item" (click)="chooseChapter(2)">
             <span class="book__item__text">B1</span>
-            <div class="book__item__image"></div>
+            <div class="book__item__image" [ngStyle]= "{ 'filter': cardActive === 3 ? 'none' : '', 'opacity': cardActive === 3 ? '1' : ''}"></div>
         </div>
-        <div class="book__item" (click)="levelB2()">
+        <div class="book__item" (click)="chooseChapter(3)">
             <span class="book__item__text">B2</span>
-            <div class="book__item__image"></div>
+            <div class="book__item__image" [ngStyle]= "{ 'filter': cardActive === 4 ? 'none' : '', 'opacity': cardActive === 4 ? '1' : ''}"></div>
         </div>
-        <div class="book__item" (click)="levelC1()">
+        <div class="book__item" (click)="chooseChapter(4)">
             <span class="book__item__text">C1</span>
-            <div class="book__item__image"></div>
+            <div class="book__item__image" [ngStyle]= "{ 'filter': cardActive === 5 ? 'none' : '', 'opacity': cardActive === 5 ? '1' : ''}"></div>
         </div>
-        <div class="book__item" (click)="levelC2()">
+        <div class="book__item" (click)="chooseChapter(5)">
             <span class="book__item__text">C2</span>
-            <div class="book__item__image"></div>
+            <div class="book__item__image" [ngStyle]= "{ 'filter': cardActive === 6 ? 'none' : '', 'opacity': cardActive === 6 ? '1' : ''}"></div>
         </div>
-        <div *ngIf="auth" class="book__item" (click)="diffWords()">
+        <div *ngIf="isLogin" class="book__item" (click)="chooseChapter(6)">
             <span class="book__item__text">Difficult words</span>
-            <div class="book__item__image"></div>
+            <div class="book__item__image" [ngStyle]= "{ 'filter': cardActive === 7 ? 'none' : '', 'opacity': cardActive === 7 ? '1' : ''}"></div>
         </div>
+    </div>
+
+    <div class="control">
+        <label class="switch">
+            <input type="checkbox" [checked]="translated" (change)="translate()">
+            <span class="slider round"></span>
+          </label>  
+    </div>
+
+    <div class="pagination" *ngIf="cardActive !== 0 && cardActive !== 7">
+        <div class="pagination__left" (click)="paginationLeft()" ></div>
+        Page {{page}} of 30 
+        <div class="pagination__right" (click)="paginationRight()" ></div>
+    </div>
+
+    <app-word-card class="cards"></app-word-card>
+
+    <div class="pagination" *ngIf="cardActive !== 0 && cardActive !== 7">
+        <div class="pagination__left" (click)="paginationLeft()" ></div>
+        Page {{page}} of 30 
+        <div class="pagination__right" (click)="paginationRight()" ></div>        
     </div>
 </section>
