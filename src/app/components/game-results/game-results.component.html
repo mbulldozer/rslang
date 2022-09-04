@@ -1,0 +1,54 @@
+<mat-list class='results'>
+  <mat-card class="spinner-card">
+    <mat-card-title class="results-title">Results</mat-card-title>
+    <mat-card-content class="results-content">
+      <div class="spinner-wrap">
+        <mat-progress-spinner
+          class="spinner-background"
+          color="primary"
+          [mode]="mode"
+          value="100">
+        </mat-progress-spinner>
+        <mat-progress-spinner
+          [color]="color"
+          [mode]="mode"
+          [value]="spinnerValue">
+        </mat-progress-spinner>
+        <div class="spinner-value">{{spinnerValue}}%</div>
+      </div>
+      <div class="results-stats">
+        <mat-list>
+          <mat-list-item>
+            <mat-icon mat-list-icon class="correct-icon">check_circle_outline</mat-icon>
+            <div mat-line>Correct answers: {{correctAnswers.length}}</div>
+          </mat-list-item>
+          <mat-list-item>
+            <mat-icon mat-list-icon class="error-icon">error_outline</mat-icon>
+            <div mat-line>Mistakes: {{wrongAnswers.length}}</div>
+          </mat-list-item>
+          <mat-list-item>
+            <mat-icon mat-list-icon class="skipped-icon">not_interested</mat-icon>
+            <div mat-line>Skipped: {{skippedAnswers.length}}</div>
+          </mat-list-item>
+        </mat-list>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  <div mat-subheader>Mistakes({{wrongAnswers.length}})</div>
+  <mat-list-item *ngFor="let wrongAnswer of wrongAnswers">
+    <mat-icon mat-list-icon class="audio" (click)="playWord(wrongAnswer.audio)">volume_up</mat-icon>
+    <div mat-line>{{wrongAnswer.word}} - <span class="translate">{{wrongAnswer.wordTranslate}}</span></div>
+  </mat-list-item>
+  <mat-divider></mat-divider>
+  <div mat-subheader>Correct Answers({{correctAnswers.length}})</div>
+  <mat-list-item *ngFor="let correctAnswer of correctAnswers">
+    <mat-icon mat-list-icon class="audio" (click)="playWord(correctAnswer.audio)">volume_up</mat-icon>
+    <div mat-line>{{correctAnswer.word}} - <span class="translate">{{correctAnswer.wordTranslate}}</span></div>
+  </mat-list-item>
+  <mat-divider></mat-divider>
+  <div mat-subheader>Skipped({{skippedAnswers.length}})</div>
+  <mat-list-item *ngFor="let skippedAnswer of skippedAnswers">
+    <mat-icon mat-list-icon class="audio" (click)="playWord(skippedAnswer.audio)">volume_up</mat-icon>
+    <div mat-line>{{skippedAnswer.word}} - <span class="translate">{{skippedAnswer.wordTranslate}}</span></div>
+  </mat-list-item>
+</mat-list>

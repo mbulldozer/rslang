@@ -1,0 +1,13 @@
+<mat-card>
+  <mat-card-title>Audio challenge</mat-card-title>
+  <mat-card-subtitle>Choose from the suggested answers the correct translation of the word you hear</mat-card-subtitle>
+  <mat-card-actions>
+    <mat-form-field appearance="fill">
+      <mat-label>Choose difficulty</mat-label>
+      <mat-select [(value)]="selectedDifficulty">
+        <mat-option value="{{difficulty}}" *ngFor="let difficulty of difficulties">Difficulty {{difficulty}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button mat-button (click)="selectDifficulty()">Start</button>
+  </mat-card-actions>
+</mat-card>
