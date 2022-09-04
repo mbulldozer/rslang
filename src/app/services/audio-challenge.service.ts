@@ -3,7 +3,7 @@ import { BehaviorSubject } from 'rxjs';
 
 import GlobalConstants from '../common/global-constants';
 import GamesConstants from '../common/games-constants';
-import { IGameState } from '../models/games';
+import { IAnswer, IGameState, IWord } from '../models/games';
 
 @Injectable({
   providedIn: 'root',
@@ -13,9 +13,9 @@ export default class AudioChallengeService {
 
   difficulties: number[] = GamesConstants.difficulties;
 
-  words: any[] = [];
+  words: IWord[] = [];
 
-  results: { correct: any[], wrong: any[], skipped: any[] } = {
+  results: { correct: IWord[], wrong: IWord[], skipped: IWord[] } = {
     correct: [],
     wrong: [],
     skipped: [],
@@ -31,7 +31,7 @@ export default class AudioChallengeService {
     this.words = await words.json();
   }
 
-  getRandomWord(words: any[], usedWords: any[]) {
+  getRandomWord(words: IWord[], usedWords: IWord[]) {
     let randomWord = words[this.getRandomValue(words.length)];
     while (usedWords.includes(randomWord)) {
       randomWord = words[this.getRandomValue(words.length)];
@@ -39,8 +39,8 @@ export default class AudioChallengeService {
     return randomWord;
   }
 
-  getRandomAnswers(words: any[], word: any) {
-    const answers = [{ word: word.wordTranslate, status: 'empty' }];
+  getRandomAnswers(words: IWord[], word: IWord) {
+    const answers: IAnswer[] = [{ word: word.wordTranslate, status: 'empty' }];
     for (let i = 1; i < 5; i += 1) {
       let randomAnswer = words[this.getRandomValue(words.length)];
       while (answers.some((answer) => answer.word === randomAnswer.wordTranslate)) {
@@ -111,7 +111,7 @@ export default class AudioChallengeService {
     };
   }
 
-  addResult(isCorrect: boolean, word: any) {
+  addResult(isCorrect: boolean, word: IWord) {
     isCorrect ? this.results.correct.push(word) : this.results.wrong.push(word);
   }
 }

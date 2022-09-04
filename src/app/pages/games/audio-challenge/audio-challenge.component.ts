@@ -6,7 +6,7 @@ import GlobalConstants from '../../../common/global-constants';
 import AudioChallengeService from '../../../services/audio-challenge.service';
 import AudioService from '../../../services/audio.service';
 
-import { Stage } from '../../../models/games';
+import { IAnswer, IWord, Stage } from '../../../models/games';
 
 @Component({
   selector: 'app-audio-challenge',
@@ -16,9 +16,9 @@ import { Stage } from '../../../models/games';
 export default class AudioChallengeComponent implements OnInit {
   stage: Stage;
 
-  answers: any[];
+  answers: IAnswer[];
 
-  word: any;
+  word: IWord | undefined;
 
   globalListenFunc: (() => void);
 
@@ -56,7 +56,7 @@ export default class AudioChallengeComponent implements OnInit {
       .subscribe((state) => {
         this.stage = state.stage;
         this.answers = state.answers;
-        this.word = state.usedWords.length ? state.usedWords[state.usedWords.length - 1] : null;
+        this.word = state.usedWords[state.usedWords.length - 1];
         this.progress = (100 * state.usedWords.length) / this.gamesService.words.length;
         this.autoPlayWord();
       });
@@ -75,12 +75,12 @@ export default class AudioChallengeComponent implements OnInit {
   }
 
   playWord() {
-    const src = `${GlobalConstants.urlPath}/${this.word.audio}`;
+    const src = `${GlobalConstants.urlPath}/${this.word?.audio}`;
     this.audioService.play(src);
   }
 
   playMeaning() {
-    const src = `${GlobalConstants.urlPath}/${this.word.audioMeaning}`;
+    const src = `${GlobalConstants.urlPath}/${this.word?.audioMeaning}`;
     this.audioService.play(src);
   }
 
@@ -97,7 +97,7 @@ export default class AudioChallengeComponent implements OnInit {
   }
 
   getImageSrc() {
-    return `${GlobalConstants.urlPath}/${this.word.image}`;
+    return `${GlobalConstants.urlPath}/${this.word?.image}`;
   }
 
   toogleFullScreen() {

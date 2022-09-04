@@ -16,23 +16,23 @@
         <mat-card-content class="word-info-content">
           <img mat-card-image
                [src]="getImageSrc()"
-               [alt]="word.word">
+               [alt]="word?.word">
           <mat-list>
             <mat-list-item>
               <mat-icon mat-list-icon class="word-info_audio" (click)="playWord()">volume_up</mat-icon>
-              <div mat-line>{{word.word}}</div>
+              <div mat-line>{{word?.word}}</div>
             </mat-list-item>
             <mat-list-item>
               <mat-icon mat-list-icon>g_translate</mat-icon>
-              <div mat-line>{{word.wordTranslate}}</div>
+              <div mat-line>{{word?.wordTranslate}}</div>
             </mat-list-item>
             <mat-list-item>
               <mat-icon mat-list-icon class="word-info_audio" (click)="playMeaning()">volume_up</mat-icon>
-              <div mat-line [innerHTML]="word.textMeaning"></div>
+              <div mat-line [innerHTML]="word?.textMeaning"></div>
             </mat-list-item>
             <mat-list-item>
               <mat-icon mat-list-icon>g_translate</mat-icon>
-              <div mat-line>{{word.textMeaningTranslate}}</div>
+              <div mat-line>{{word?.textMeaningTranslate}}</div>
             </mat-list-item>
           </mat-list>
         </mat-card-content>
