@@ -18,6 +18,10 @@ import AuthService from './services/auth.service';
 import { PreLoaderComponent } from './components/pre-loader/pre-loader.component';
 import FeaturesComponent from './components/features/features.component';
 import FooterComponent from './components/footer/footer.component';
+import AudioChallengeComponent from './pages/games/audio-challenge/audio-challenge.component';
+import GamesService from "./services/games.service";
+import DifficultySelectionComponent from './components/difficulty-selection/difficulty-selection.component';
+import GameResultsComponent from './components/game-results/game-results.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +34,9 @@ import FooterComponent from './components/footer/footer.component';
     PreLoaderComponent,
     FeaturesComponent,
     FooterComponent,
+    AudioChallengeComponent,
+    DifficultySelectionComponent,
+    GameResultsComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,7 +48,7 @@ import FooterComponent from './components/footer/footer.component';
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  providers: [AuthService],
+  providers: [AuthService, GamesService],
   bootstrap: [AppComponent],
 })
 export default class AppModule { }

@@ -1,0 +1,61 @@
+.results {
+  width: 500px;
+  height: 370px;
+  overflow: auto;
+  background-color: white;
+  border-radius: 8px;
+}
+
+.results-title {
+  font-family: "Nico Moji", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 26px;
+  line-height: 26px;
+  color: #050287;
+  text-align: center;
+}
+
+.results-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.spinner-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.spinner-wrap {
+  position: relative;
+}
+
+.spinner-background {
+  position: absolute;
+}
+
+.spinner-value {
+  position:absolute;
+  top: 40px;
+  left: 50px;
+  transform: translateX(-50%);
+  font-family: "Next Art", sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 20px;
+}
+
+.translate {
+  color: darkgray;
+}
+
+.audio {
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    background-color: rgba(77, 70, 104, 0.34);
+  }
+}
