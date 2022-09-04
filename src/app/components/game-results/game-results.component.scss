@@ -1,5 +1,5 @@
 .results {
-  width: 500px;
+  width: 430px;
   height: 370px;
   overflow: auto;
   background-color: white;
@@ -58,4 +58,16 @@
   &:hover {
     background-color: rgba(77, 70, 104, 0.34);
   }
+}
+
+.correct-icon {
+  color: green;
+}
+
+.error-icon {
+  color: red;
+}
+
+.skipped-icon {
+  color: yellow;
 }

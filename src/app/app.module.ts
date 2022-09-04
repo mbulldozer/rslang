@@ -22,6 +22,7 @@ import AudioChallengeComponent from './pages/games/audio-challenge/audio-challen
 import GamesService from './services/games.service';
 import DifficultySelectionComponent from './components/difficulty-selection/difficulty-selection.component';
 import GameResultsComponent from './components/game-results/game-results.component';
+import TimerService from './services/timer.service';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,7 @@ import GameResultsComponent from './components/game-results/game-results.compone
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  providers: [AuthService, GamesService],
+  providers: [AuthService, GamesService, TimerService],
   bootstrap: [AppComponent],
 })
 export default class AppModule { }

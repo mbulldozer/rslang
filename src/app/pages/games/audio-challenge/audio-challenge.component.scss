@@ -2,7 +2,7 @@
   padding-bottom: 40px;
 }
 
-.close {
+.fullscreen {
   position: absolute;
   top: -28px;
   right: 28px;
@@ -21,9 +21,19 @@
   left: 0;
 }
 
+.audio-wrap {
+  position: relative;
+
+  .spinner-background {
+    position: absolute;
+    top: 40px;
+    left: 40px;
+  }
+}
+
 .content {
   $large-size-button: 80px;
-  $large-size-icon: 48px;
+  $large-size-icon: 40px;
 
   display: flex;
   flex-direction: column;
@@ -39,12 +49,14 @@
     width: $large-size-button;
     height: $large-size-button;
     line-height: $large-size-button;
+    transition: all 0.3s ease-in-out;
 
     .mat-icon {
       font-size: $large-size-icon;
       width: $large-size-icon;
       height: $large-size-icon;
       line-height: $large-size-icon;
+      transition: all 0.3s ease-in-out;
     }
 
     .mat-button-ripple {
@@ -52,6 +64,14 @@
       width: inherit;
       height: inherit;
       line-height: inherit;
+    }
+
+    &:hover {
+      background-color: #3B6686;
+
+      .mat-icon {
+        color: orange;
+      }
     }
   }
 

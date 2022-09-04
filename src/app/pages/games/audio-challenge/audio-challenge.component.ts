@@ -5,6 +5,7 @@ import GlobalConstants from '../../../common/global-constants';
 import GamesService from '../../../services/games.service';
 import AudioService from '../../../services/audio.service';
 import { Stage } from '../../../models/games';
+import TimerService from '../../../services/timer.service';
 
 @Component({
   selector: 'app-audio-challenge',
@@ -24,9 +25,12 @@ export default class AudioChallengeComponent implements OnInit {
 
   progress: number = 0;
 
+  timer: number = 0;
+
   constructor(
     private gamesService: GamesService,
     private audioService: AudioService,
+    private timerService: TimerService,
     private renderer: Renderer2,
   ) {
     this.stage = GamesConstants.initState.stage;
@@ -57,6 +61,19 @@ export default class AudioChallengeComponent implements OnInit {
         this.word = state.usedWords.length ? state.usedWords[state.usedWords.length - 1] : null;
         this.progress = (100 * state.usedWords.length) / this.gamesService.words.length;
         this.autoPlayWord();
+        if (this.stage === 'level-start') {
+          this.timerService.startTimer();
+        } else if (this.stage === 'level-end') {
+          this.timerService.stopTimer();
+        }
+      });
+    this.timerService.getTimer()
+      .subscribe((value) => {
+        this.timer = value;
+        if (this.stage === 'level-start' && value === 100) {
+          this.nextRound();
+          this.timerService.stopTimer();
+        }
       });
   }
 

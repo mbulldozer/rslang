@@ -19,15 +19,15 @@
       <div class="results-stats">
         <mat-list>
           <mat-list-item>
-            <mat-icon mat-list-icon>check_circle_outline</mat-icon>
+            <mat-icon mat-list-icon class="correct-icon">check_circle_outline</mat-icon>
             <div mat-line>Correct answers: {{correctAnswers.length}}</div>
           </mat-list-item>
           <mat-list-item>
-            <mat-icon mat-list-icon>error_outline</mat-icon>
+            <mat-icon mat-list-icon class="error-icon">error_outline</mat-icon>
             <div mat-line>Mistakes: {{wrongAnswers.length}}</div>
           </mat-list-item>
           <mat-list-item>
-            <mat-icon mat-list-icon>not_interested</mat-icon>
+            <mat-icon mat-list-icon class="skipped-icon">not_interested</mat-icon>
             <div mat-line>Skipped: {{skippedAnswers.length}}</div>
           </mat-list-item>
         </mat-list>
