@@ -1,13 +1,14 @@
 import { Component } from '@angular/core';
-import GamesService from "../../services/games.service";
+import GamesService from '../../services/games.service';
 
 @Component({
   selector: 'app-difficulty-selection',
   templateUrl: './difficulty-selection.component.html',
-  styleUrls: ['./difficulty-selection.component.scss']
+  styleUrls: ['./difficulty-selection.component.scss'],
 })
 export default class DifficultySelectionComponent {
   difficulties: number[];
+
   selectedDifficulty: string;
 
   constructor(private gamesService: GamesService) {

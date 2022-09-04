@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export default class AudioService {
   private audio: HTMLAudioElement;
+
   private isPlaying: boolean;
 
   constructor() {
@@ -22,6 +23,6 @@ export default class AudioService {
   }
 
   pause() {
-      this.audio.pause();
+    this.audio.pause();
   }
 }

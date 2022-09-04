@@ -1,26 +1,27 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
-import GlobalConstants from "../common/global-constants";
-import GamesConstants from "../common/games-constants";
-import { IGameState } from "../models/games";
+import GlobalConstants from '../common/global-constants';
+import GamesConstants from '../common/games-constants';
+import { IGameState } from '../models/games';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export default class GamesService {
-  private gameState:  BehaviorSubject<IGameState> = new BehaviorSubject(GamesConstants.initState);
+  private gameState: BehaviorSubject<IGameState> = new BehaviorSubject(GamesConstants.initState);
+
   difficulties: number[] = GamesConstants.difficulties;
+
   words: any[] = [];
+
   results: { correct: any[], wrong: any[], skipped: any[] } = {
     correct: [],
     wrong: [],
     skipped: [],
   };
 
-  constructor() { }
-
-  private getRandomValue(max: number) {
+  getRandomValue(max: number) {
     return Math.floor(Math.random() * max);
   }
 
@@ -39,10 +40,10 @@ export default class GamesService {
   }
 
   getRandomAnswers(words: any[], word: any) {
-    let answers = [{ word: word.wordTranslate, status: 'empty' }];
-    for (let i = 1; i < 5; i++) {
+    const answers = [{ word: word.wordTranslate, status: 'empty' }];
+    for (let i = 1; i < 5; i += 1) {
       let randomAnswer = words[this.getRandomValue(words.length)];
-      while (answers.some( (answer) => answer.word === randomAnswer.wordTranslate)) {
+      while (answers.some((answer) => answer.word === randomAnswer.wordTranslate)) {
         randomAnswer = words[this.getRandomValue(words.length)];
       }
       answers.push({ word: randomAnswer.wordTranslate, status: 'empty' });
@@ -91,7 +92,7 @@ export default class GamesService {
 
   skipRound() {
     const state = this.gameState.value;
-    this.results.skipped.push(state.usedWords[state.usedWords.length - 1])
+    this.results.skipped.push(state.usedWords[state.usedWords.length - 1]);
     state.stage = 'level-end';
     this.gameState.next(state);
   }
@@ -101,7 +102,7 @@ export default class GamesService {
       stage: 'difficulty-selection',
       usedWords: [],
       answers: [],
-    }
+    };
     this.gameState.next(state);
     this.results = {
       correct: [],
