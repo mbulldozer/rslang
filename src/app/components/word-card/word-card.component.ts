@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Word } from 'src/app/models/word';
 import TextBookService from 'src/app/services/textbook.service';
 import AuthService from 'src/app/services/auth.service';
+import GlobalConstants from 'src/app/common/global-constants';
+
 
 @Component({
   selector: 'app-word-card',
@@ -37,8 +39,12 @@ export default class WordCardComponent implements OnInit {
   }
 
   playAudio(source: string) {
-    this.audio.src = `http://localhost:27017/${source}`;
+    this.audio.src = `${GlobalConstants.urlPath}/${source}`;
     this.audio.currentTime = 0;
     this.audio.play();
+  }
+
+  addToDifficult(id: string) {
+    this.textBookService.sendData(id);
   }
 }

@@ -1,6 +1,5 @@
 <div class="card" *ngFor="let item of card">
-    <img src="http://localhost:27017/{{item.image}}" alt="image" class="card__image">
-    <!-- <img src="https://rs-lang-server.herokuapp.com/{{item.image}}" alt="image" class="card__image-photo"> -->
+    <img src="https://rs-lang-server.herokuapp.com/{{item.image}}" alt="image" class="card__image-photo">
     <div class="card__description">
         <div class="card__word">
             <h1 class="card__description__word" [innerHtml]="item.word"></h1>
@@ -17,7 +16,7 @@
         <p  class="card__description__example" *ngIf="translate" [innerHtml]="item.textExampleTranslate"></p>
 
         <div class="card__buttons" *ngIf="isLogin">
-            <button class="card__button-difficult">Добавить в сложные</button>
+            <button class="card__button-difficult" (click)="addToDifficult(item.id)" >Добавить в сложные</button>
             <button class="card__button-studied">Изучено</button>
         </div>
     </div>

@@ -65,3 +65,31 @@
     }
     
 }
+
+@media(max-width: 780px) {
+    .card {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        width: 80%;
+
+        &__image-photo {
+            padding: 15px 0 15px 0;
+        }
+
+        &__word {
+            max-width: 400px;
+            width: 100%;
+        }
+
+        &__buttons {
+            justify-content: center;
+            padding-bottom: 20px;
+        }
+
+        &__description {
+            max-width: 500px;
+            width: 100%;
+        }
+    }
+  }
