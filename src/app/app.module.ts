@@ -23,6 +23,7 @@ import AudioChallengeService from './services/audio-challenge.service';
 import DifficultySelectionComponent from './components/difficulty-selection/difficulty-selection.component';
 import GameResultsComponent from './components/game-results/game-results.component';
 import TimerService from './services/timer.service';
+import GamesComponent from './pages/games/games.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import TimerService from './services/timer.service';
     AudioChallengeComponent,
     DifficultySelectionComponent,
     GameResultsComponent,
+    GamesComponent,
   ],
   imports: [
     BrowserModule,
