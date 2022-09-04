@@ -27,7 +27,7 @@ export default class GamesService {
   async loadRandomWords(groupNumber: number) {
     const pageNumber = this.getRandomValue(GamesConstants.pageCount);
     const words = await fetch(`${GlobalConstants.urlPath}/words?group=${groupNumber}&page=${pageNumber}`);
-    this.words.push(...(await words.json()));
+    this.words = await words.json();
   }
 
   getRandomWord(words: any[], usedWords: any[]) {
