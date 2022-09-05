@@ -16,9 +16,9 @@ export default class TextBookService {
 
   private difficult: string = '';
 
-  constructor(private http: HttpClient) { }
+  private studied: string = '';
 
-  private cardArray: Word[] = [];
+  constructor(private http: HttpClient) { }
 
   public aggregateDate$ = new Subject<Word[]>();
 
@@ -31,10 +31,10 @@ export default class TextBookService {
       .subscribe((resp: Word[]) => { this.loadData$.next(resp); });
   }
 
-  sendWord = async (wordId: string, token: string, userId: string, difficulty: string) => {
+  sendWord = async (wordId: string, token: string, userId: string, difficulty: string, typeReq: string = 'POST') => {
     this.difficult = difficulty;
     await fetch(`${GlobalConstants.urlPath}/users/${userId}/words/${wordId}`, {
-      method: 'POST',
+      method: typeReq,
       body: JSON.stringify({ difficulty: this.difficult, optional: {} }),
       headers: {
         Authorization: `Bearer ${token}`,
@@ -49,17 +49,6 @@ export default class TextBookService {
     if (this.difficult === 'easy') {
       await fetch(`${GlobalConstants.urlPath}/users/${userId}/words/${wordId}`, {
         method: 'DELETE',
-        body: JSON.stringify({ difficulty: this.difficult, optional: {} }),
-        headers: {
-          Authorization: `Bearer ${token}`,
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-      });
-    } else {
-      await fetch(`${GlobalConstants.urlPath}/users/${userId}/words/${wordId}`, {
-        method: 'PUT',
-        body: JSON.stringify({ difficulty: this.difficult, optional: {} }),
         headers: {
           Authorization: `Bearer ${token}`,
           Accept: 'application/json',
@@ -67,6 +56,19 @@ export default class TextBookService {
         },
       });
     }
+  };
+
+  makeWordStudied = async (wordId: string, token: string, userId: string, studied: string, typeReq: string = 'POST') => {
+    this.studied = studied;
+    await fetch(`${GlobalConstants.urlPath}/users/${userId}/words/${wordId}`, {
+      method: typeReq,
+      body: JSON.stringify({ optional: { isStudied: studied } }),
+      headers: {
+        Authorization: `Bearer ${token}`,
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    });
   };
 
   getAllUserWords = async (token: string, userId: string) => {
@@ -84,7 +86,20 @@ export default class TextBookService {
 
   getAggregateUserWords = async (token: string, userId: string) => {
     this.userId = userId;
-    const response = await fetch(`${GlobalConstants.urlPath}/users/${this.userId}/aggregatedWords?wordsPerPage=3600&filter={"$or":[{"userWord.difficulty":"difficult"}]}`, {
+    const response = await fetch(`${GlobalConstants.urlPath}/users/${this.userId}/aggregatedWords?wordsPerPage=3600&filter={"$and":[{"userWord.difficulty":"difficult"}]}`, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${token}`,
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    });
+    return response.json();
+  };
+
+  getAggregateUserStudiedWords = async (token: string, userId: string) => {
+    this.userId = userId;
+    const response = await fetch(`${GlobalConstants.urlPath}/users/${this.userId}/aggregatedWords?wordsPerPage=3600&filter={"$and":[{"userWord.optional.isStudied":"studied"}]}`, {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${token}`,

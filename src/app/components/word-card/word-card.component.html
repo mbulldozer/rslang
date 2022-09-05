@@ -6,7 +6,8 @@
         <div class="card__word">
             <h1 class="card__description__word" [innerHtml]="item.word"></h1>
             <h1 class="card__description__word" *ngIf="translate" [innerHtml]="item.wordTranslate"></h1>
-            <img src="../../../assets/images/difficult.png" alt="Difficult" class="card__image-difficult" *ngIf="!difficult" [ngStyle]="{visibility: item.difficult}" >
+            <img src="../../../assets/images/difficult.png" alt="Difficult" class="card__image-difficult" *ngIf="!difficult && isLogin" [ngStyle]="{visibility: item.difficult}" >
+            <img src="../../../assets/images/check_mark.png" alt="Difficult" class="card__image-difficult" *ngIf="!difficult && isLogin" [ngStyle]="{visibility: item.studied}" >
         </div>
         <div class="card__description__transcription">
             {{item.transcription}}
@@ -21,7 +22,7 @@
         <div class="card__buttons" *ngIf="isLogin">
             <button class="card__button-difficult" (click)="addToDifficult(item.id)" *ngIf="!difficult" [disabled]="item.difficult ? 'disabled': null">Добавить в сложные</button>
             <button class="card__button-difficult" (click)="deleteFromDifficult(item._id)" *ngIf="difficult" >Удалить из сложных</button>
-            <button class="card__button-studied" *ngIf="!difficult">Изучено</button>
+            <button class="card__button-studied" *ngIf="!difficult" (click)="studiedWord(item.id)" [disabled]="item.studied? 'disabled': null">Изучено</button>
         </div>
     </div>
 </div>

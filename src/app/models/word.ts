@@ -15,4 +15,5 @@ export interface Word {
   textMeaningTranslate: string;
   textExampleTranslate: string;
   difficult: string;
+  studied: string;
 }
