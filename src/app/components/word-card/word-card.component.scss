@@ -7,8 +7,16 @@
     width: 100%;
     overflow: hidden;
     color: white;
-    
+    font-family: 'Arodora Pro', sans-serif;
+
+    &__image-wrapper {
+        display: flex;
+        overflow: hidden;
+        width: 350px;
+    }
+
     &__word {
+        font-family: 'Next Art', sans-serif;
         display: flex;
         gap: 10px;
     }
@@ -26,12 +34,19 @@
         padding: 0;
     }
 
+    &__image-difficult {
+        visibility: hidden;
+        width: 30px;
+        height: 30px;
+    }
+
     &__description {
         padding-left: 25px;
-        
+
         &__word {
             font-size: 32px;
         }
+
         &__transcription {
             display: flex;
             align-items: center;
@@ -44,7 +59,9 @@
         gap: 10px;
     }
 
-    &__button-studied, &__button-difficult {
+    &__button-studied,
+    &__button-difficult {
+        font-family: 'Arodora Pro', sans-serif;
         height: 35px;
         width: 150px;
         background-color: transparent;
@@ -52,6 +69,14 @@
         border-radius: 5px;
         color: white;
         cursor: pointer;
+    }
+
+    &__button-difficult {
+        background-color: rgba(255, 0, 0, 0.1);
+    }
+
+    &__button-studied {
+        background-color: rgba(0, 255, 42, 0.1);
     }
 
     &__button-difficult:hover {
@@ -63,7 +88,11 @@
         transition: 0.2s;
         background-color: rgba(0, 255, 42, 0.5);
     }
-    
+
+}
+
+.active {
+    visibility: visible;
 }
 
 @media(max-width: 780px) {
@@ -92,4 +121,4 @@
             width: 100%;
         }
     }
-  }
+}

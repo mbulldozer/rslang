@@ -26,6 +26,10 @@ export default class WordCardComponent implements OnInit {
 
   difficult: boolean = false;
 
+  active: any[] = [];
+
+  protected visibility!: string;
+
   constructor(private readonly textBookService: TextBookService, private authService: AuthService) {
     this.translate = false;
     this.card = [];
@@ -45,6 +49,7 @@ export default class WordCardComponent implements OnInit {
   drawCard(data: Word[]) {
     this.difficult = false;
     this.card = [...data];
+    this.getDifficultWords();
   }
 
   drawDifficultCard(data: Word[]) {
@@ -63,10 +68,10 @@ export default class WordCardComponent implements OnInit {
       if (value) {
         this.userId = value.userId as string;
         this.token = value.token as string;
-        // console.log(this.textBookService.getAllUserWords(this.token, this.userId));
         this.textBookService.sendWord(wordId, this.token, this.userId, 'difficult');
       }
     });
+    this.addDifficultMark(wordId);
   }
 
   deleteFromDifficult(wordId: string) {
@@ -76,6 +81,39 @@ export default class WordCardComponent implements OnInit {
         this.token = value.token as string;
         this.textBookService.makeWordEasy(wordId, this.token, this.userId, 'easy');
         this.card.splice(this.card.findIndex((element) => element._id === wordId), 1);
+      }
+    });
+  }
+
+  protected addDifficultMark(wordId: string) {
+    const items = [...this.card];
+    this.card.forEach((el, index) => {
+      if (el.id === wordId) {
+        items[index].difficult = 'visible';
+      }
+    });
+  }
+
+  getDifficultWords() {
+    const items = [...this.card];
+    let response: any = [];
+    this.authService.loginData$.subscribe((value) => {
+      if (value) {
+        this.userId = value.userId as string;
+        this.token = value.token as string;
+        this.textBookService.getAggregateUserWords(this.token, this.userId)
+          .then((resp) => {
+            response = resp[0].paginatedResults.map((el: any[]) => el);
+            response = response.map((el: any) => el._id);
+            response.forEach((element: any) => {
+              if (this.card.filter((el) => el.id === element)) {
+                const index = this.card.findIndex((el) => el.id === element);
+                if (index > -1) {
+                  items[index].difficult = 'visible';
+                }
+              }
+            });
+          });
       }
     });
   }
