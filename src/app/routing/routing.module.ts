@@ -9,9 +9,7 @@ import AudioChallengeComponent from '../pages/games/audio-challenge/audio-challe
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'textbook', component: TextbookComponent },
-  { path: '', redirectTo: '/textbook', pathMatch: 'full' },
   { path: 'games', component: GamesComponent },
   { path: 'games/audio-challenge', component: AudioChallengeComponent },
 ];
