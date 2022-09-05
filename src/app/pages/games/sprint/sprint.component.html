@@ -3,5 +3,30 @@
     <mat-icon>{{!isFullScreen ? 'fullscreen' : 'fullscreen_exit'}}</mat-icon>
   </button>
   <app-difficulty-selection *ngIf="stage === 'difficulty-selection'" title="sprint"></app-difficulty-selection>
-  <app-game-results *ngIf="stage === 'results'"></app-game-results>
+  <app-game-results *ngIf="stage === 'results'" title="sprint" [score]="score.toString()"></app-game-results>
+  <div class="game-level" *ngIf="stage === 'level-start'">
+    <h2>Score: {{score}}</h2>
+    <div class="content" [@status]="status" (@status.done)="animationDone()">
+      <div class="spinner-wrap">
+        <mat-progress-spinner
+          class="spinner-background"
+          color="primary"
+          mode="determinate"
+          value="100">
+        </mat-progress-spinner>
+        <mat-progress-spinner
+          color="warn"
+          mode="determinate"
+          [value]="timer/0.6">
+        </mat-progress-spinner>
+        <div class="spinner-value">{{timer}}</div>
+      </div>
+      <p class="word">{{word?.word}}</p>
+      <p class="translate">{{answer}}</p>
+      <div class="buttons">
+        <button mat-raised-button (click)="selectAnswer(true)">← True</button>
+        <button mat-raised-button (click)="selectAnswer(false)">False →</button>
+      </div>
+    </div>
+  </div>
 </section>

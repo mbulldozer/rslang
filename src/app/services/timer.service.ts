@@ -7,25 +7,25 @@ import { BehaviorSubject } from 'rxjs';
 export default class TimerService {
   private timer: BehaviorSubject<number> = new BehaviorSubject(0);
 
-  time: number = 0;
+  time: number = 60;
 
   interval: number | undefined;
 
   startTimer() {
     this.interval = setInterval(() => {
-      if (this.time < 30) {
-        this.time += 0.1;
+      if (this.time > 0) {
+        this.time -= 1;
       } else {
-        this.time = 30;
+        this.time = 0;
       }
-      this.timer.next(this.time / 0.3);
-    }, 100);
+      this.timer.next(this.time);
+    }, 1000);
   }
 
   stopTimer() {
     clearInterval(this.interval);
-    this.time = 0;
-    this.timer.next(0);
+    this.time = 60;
+    this.timer.next(60);
   }
 
   getTimer() {

@@ -4,6 +4,7 @@ import {BehaviorSubject} from 'rxjs';
 import { ISprintState, IWord } from "../models/games";
 import GamesConstants from "../common/games-constants";
 import GlobalConstants from "../common/global-constants";
+import TimerService from "./timer.service";
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +23,8 @@ export default class SprintService {
     wrong: [],
     skipped: [],
   };
+
+  constructor(private timerService: TimerService) { }
 
   getRandomValue(max: number) {
     return Math.floor(Math.random() * max);
@@ -84,6 +87,8 @@ export default class SprintService {
     }
     this.addResult(isCorrect, state.usedWords[state.usedWords.length - 1]);
     this.gameState.next(state);
+    this.nextRound();
+    return isCorrect;
   }
 
   interruptGame() {
@@ -103,5 +108,16 @@ export default class SprintService {
 
   addResult(isCorrect: boolean, word: IWord) {
     isCorrect ? this.results.correct.push(word) : this.results.wrong.push(word);
+  }
+
+  startGame() {
+    this.nextRound();
+    this.timerService.startTimer();
+  }
+
+  finishGame() {
+    const state = this.gameState.value;
+    state.stage = 'results';
+    this.gameState.next(state);
   }
 }

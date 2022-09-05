@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import AudioChallengeService from '../../services/audio-challenge.service';
 import SprintService from "../../services/sprint.service";
+import GamesConstants from "../../common/games-constants";
 
 @Component({
   selector: 'app-difficulty-selection',
@@ -8,11 +9,15 @@ import SprintService from "../../services/sprint.service";
   styleUrls: ['./difficulty-selection.component.scss'],
 })
 export default class DifficultySelectionComponent implements OnInit {
-  @Input() title: string | undefined
+  @Input() title: string | undefined;
 
   difficulties: number[] = [];
 
   selectedDifficulty: string = '';
+
+  gameTitle: string = '';
+
+  gameDesc: string = '';
 
   constructor(
     private audioChallengeService: AudioChallengeService,
@@ -20,16 +25,22 @@ export default class DifficultySelectionComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.difficulties = this.title === 'sprint'
-      ? this.sprintService.getDifficulties()
-      : this.audioChallengeService.getDifficulties();
+    if (this.title === 'sprint') {
+      this.difficulties = this.sprintService.getDifficulties();
+      this.gameTitle = GamesConstants.sprintDesc.title;
+      this.gameDesc = GamesConstants.sprintDesc.desc;
+    } else {
+      this.difficulties = this.audioChallengeService.getDifficulties();
+      this.gameTitle = GamesConstants.audioChallengeDesc.title;
+      this.gameDesc = GamesConstants.audioChallengeDesc.desc;
+    }
     this.selectedDifficulty = this.difficulties[0].toString();
   }
 
   async selectDifficulty() {
     if (this.title === 'sprint') {
       await this.sprintService.loadRandomWords(+this.selectedDifficulty);
-      this.sprintService.nextRound();
+      this.sprintService.startGame();
     } else {
       await this.audioChallengeService.loadRandomWords(+this.selectedDifficulty);
       this.audioChallengeService.nextRound();

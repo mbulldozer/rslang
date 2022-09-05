@@ -3,7 +3,7 @@
     <mat-icon>{{!isFullScreen ? 'fullscreen' : 'fullscreen_exit'}}</mat-icon>
   </button>
   <app-difficulty-selection *ngIf="stage === 'difficulty-selection'" title="audio-challenge"></app-difficulty-selection>
-  <app-game-results *ngIf="stage === 'results'"></app-game-results>
+  <app-game-results *ngIf="stage === 'results'" title="audio-challenge"></app-game-results>
   <div class="game-level" *ngIf="stage === 'level-start' || stage === 'level-end'">
     <mat-progress-bar class="progress-bar" mode="determinate" color="warn" [value]="progress"></mat-progress-bar>
     <div class="content">
