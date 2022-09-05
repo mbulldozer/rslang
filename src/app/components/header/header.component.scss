@@ -5,6 +5,10 @@ mat-toolbar {
   max-width: var(--max-width);
   margin: 0 auto 50px;
 
+  .menu-button {
+    color: #b6c3cd;
+  }
+
   div {
     display: flex;
     justify-content: space-between;
