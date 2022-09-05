@@ -6,10 +6,17 @@ interface IAnswer {
   status: AnswerStatus,
 }
 
-interface IGameState {
+interface IAudioChallengeState {
   stage: Stage,
   usedWords: IWord[],
   answers: IAnswer[],
+}
+
+interface ISprintState {
+  stage: Stage,
+  usedWords: IWord[],
+  answer: string,
+  score: number,
 }
 
 interface IWord {
@@ -30,5 +37,5 @@ interface IWord {
 }
 
 export {
-  AnswerStatus, Stage, IGameState, IWord, IAnswer,
+  AnswerStatus, Stage, IAudioChallengeState, ISprintState, IWord, IAnswer,
 };

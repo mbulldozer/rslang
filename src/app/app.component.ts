@@ -11,7 +11,13 @@ export default class AppComponent {
 
   constructor(private _router: Router) { }
 
-  hasRoute(route: string) {
-    return this._router.url.includes(route);
+  hasRoute(routes: string[]) {
+    let isInclude = false;
+    routes.forEach((route) => {
+      if (this._router.url.includes(route)) {
+        isInclude = true;
+      }
+    });
+    return isInclude;
   }
 }

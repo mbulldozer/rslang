@@ -1,0 +1,89 @@
+.sprint {
+  padding-bottom: 40px;
+
+  h2 {
+    font-family: "Nico Moji", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 18px;
+    color: #FFFFFF;
+  }
+}
+
+.fullscreen {
+  position: absolute;
+  top: -28px;
+  right: 28px;
+
+  background-color: #303030;
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    background-color: #565656;
+  }
+}
+
+.game-level {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  width: 250px;
+  height: 300px;
+  background: #b6c3cd;
+  border-radius: 8px;
+  box-shadow: rgba(0, 130, 163, 0.35) 0 3px 8px;
+}
+
+.spinner-wrap {
+  position: relative;
+}
+
+.spinner-background {
+  position: absolute;
+}
+
+.spinner-value {
+  position: absolute;
+  top: 40px;
+  left: 50px;
+  transform: translateX(-50%);
+  font-family: "Next Art", sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 20px;
+}
+
+.word {
+  font-family: "Arodora Pro", sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 16px;
+  margin: 20px;
+}
+
+.translate {
+  margin-bottom: 20px;
+}
+
+.buttons {
+  display: flex;
+  gap: 30px;
+
+  button:first-child {
+    background: #69df69;
+  }
+
+  button:last-child {
+    background: #dfbb69;
+  }
+}

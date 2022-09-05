@@ -1,25 +1,30 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
-import GlobalConstants from '../common/global-constants';
+import { ISprintState, IWord } from '../models/games';
 import GamesConstants from '../common/games-constants';
-import { IAnswer, IAudioChallengeState, IWord } from '../models/games';
+import GlobalConstants from '../common/global-constants';
+import TimerService from './timer.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export default class AudioChallengeService {
-  private gameState: BehaviorSubject<IAudioChallengeState> = new BehaviorSubject(GamesConstants.initState);
+export default class SprintService {
+  private gameState: BehaviorSubject<ISprintState> = new BehaviorSubject(GamesConstants.initSprintState);
 
   difficulties: number[] = GamesConstants.difficulties;
 
   words: IWord[] = [];
+
+  isTrue: boolean = true;
 
   results: { correct: IWord[], wrong: IWord[], skipped: IWord[] } = {
     correct: [],
     wrong: [],
     skipped: [],
   };
+
+  constructor(private timerService: TimerService) { }
 
   getRandomValue(max: number) {
     return Math.floor(Math.random() * max);
@@ -39,16 +44,12 @@ export default class AudioChallengeService {
     return randomWord;
   }
 
-  getRandomAnswers(words: IWord[], word: IWord) {
-    const answers: IAnswer[] = [{ word: word.wordTranslate, status: 'empty' }];
-    for (let i = 1; i < 5; i += 1) {
-      let randomAnswer = words[this.getRandomValue(words.length)];
-      while (answers.some((answer) => answer.word === randomAnswer.wordTranslate)) {
-        randomAnswer = words[this.getRandomValue(words.length)];
-      }
-      answers.push({ word: randomAnswer.wordTranslate, status: 'empty' });
+  getRandomAnswer(words: IWord[], word: IWord) {
+    let randomAnswer = words[this.getRandomValue(words.length)];
+    while (randomAnswer === word) {
+      randomAnswer = words[this.getRandomValue(words.length)];
     }
-    return answers.sort(() => Math.random() - 0.5);
+    return randomAnswer.wordTranslate;
   }
 
   getDifficulties() {
@@ -64,44 +65,38 @@ export default class AudioChallengeService {
     const isNextRound = state.usedWords.length < this.words.length;
     if (isNextRound) {
       const word = this.getRandomWord(this.words, state.usedWords);
-      const answers = this.getRandomAnswers(this.words, word);
+      this.isTrue = Math.random() < 0.5;
+      const answer = this.isTrue
+        ? word.wordTranslate
+        : this.getRandomAnswer(this.words, word);
 
       state.stage = 'level-start';
       state.usedWords.push(word);
-      state.answers = answers;
+      state.answer = answer;
     } else {
       state.stage = 'results';
     }
     this.gameState.next(state);
-    return isNextRound;
   }
 
-  selectAnswer(innerText: string) {
+  selectAnswer(answer: boolean) {
     const state = this.gameState.value;
-    const correctAnswer = state.usedWords[state.usedWords.length - 1].wordTranslate;
-    const isCorrect = correctAnswer === innerText;
+    const isCorrect = this.isTrue === answer;
+    if (isCorrect) {
+      state.score += 10;
+    }
     this.addResult(isCorrect, state.usedWords[state.usedWords.length - 1]);
-    state.answers.forEach((answer) => {
-      if (answer.word === innerText) {
-        answer.status = answer.word === correctAnswer ? 'correct-answer' : 'wrong-answer';
-      }
-    });
-    state.stage = 'level-end';
     this.gameState.next(state);
-  }
-
-  skipRound() {
-    const state = this.gameState.value;
-    this.results.skipped.push(state.usedWords[state.usedWords.length - 1]);
-    state.stage = 'level-end';
-    this.gameState.next(state);
+    this.nextRound();
+    return isCorrect;
   }
 
   interruptGame() {
-    const state: IAudioChallengeState = {
+    const state: ISprintState = {
       stage: 'difficulty-selection',
       usedWords: [],
-      answers: [],
+      score: 0,
+      answer: '',
     };
     this.gameState.next(state);
     this.results = {
@@ -113,5 +108,16 @@ export default class AudioChallengeService {
 
   addResult(isCorrect: boolean, word: IWord) {
     isCorrect ? this.results.correct.push(word) : this.results.wrong.push(word);
+  }
+
+  startGame() {
+    this.nextRound();
+    this.timerService.startTimer();
+  }
+
+  finishGame() {
+    const state = this.gameState.value;
+    state.stage = 'results';
+    this.gameState.next(state);
   }
 }
