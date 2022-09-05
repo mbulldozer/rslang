@@ -1,0 +1,124 @@
+.card {
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    max-width: 1170px;
+    width: 100%;
+    overflow: hidden;
+    color: white;
+    font-family: 'Arodora Pro', sans-serif;
+
+    &__image-wrapper {
+        display: flex;
+        overflow: hidden;
+        width: 350px;
+    }
+
+    &__word {
+        font-family: 'Next Art', sans-serif;
+        display: flex;
+        gap: 10px;
+    }
+
+    &__audio {
+        background-image: url('../../../assets/images/audio.svg');
+        background-repeat: no-repeat;
+        width: 30px;
+        height: 30px;
+        cursor: pointer;
+    }
+
+    &__image {
+        width: 400px;
+        padding: 0;
+    }
+
+    &__image-difficult {
+        visibility: hidden;
+        width: 30px;
+        height: 30px;
+    }
+
+    &__description {
+        padding-left: 25px;
+
+        &__word {
+            font-size: 32px;
+        }
+
+        &__transcription {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+    }
+
+    &__buttons {
+        display: flex;
+        gap: 10px;
+    }
+
+    &__button-studied,
+    &__button-difficult {
+        font-family: 'Arodora Pro', sans-serif;
+        height: 35px;
+        width: 150px;
+        background-color: transparent;
+        border: 1px solid white;
+        border-radius: 5px;
+        color: white;
+        cursor: pointer;
+    }
+
+    &__button-difficult {
+        background-color: rgba(255, 0, 0, 0.1);
+    }
+
+    &__button-studied {
+        background-color: rgba(0, 255, 42, 0.1);
+    }
+
+    &__button-difficult:hover {
+        transition: 0.2s;
+        background-color: rgba(255, 0, 0, 0.5);
+    }
+
+    &__button-studied:hover {
+        transition: 0.2s;
+        background-color: rgba(0, 255, 42, 0.5);
+    }
+
+}
+
+.active {
+    visibility: visible;
+}
+
+@media(max-width: 780px) {
+    .card {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        width: 80%;
+
+        &__image-photo {
+            padding: 15px 0 15px 0;
+        }
+
+        &__word {
+            max-width: 400px;
+            width: 100%;
+        }
+
+        &__buttons {
+            justify-content: center;
+            padding-bottom: 20px;
+        }
+
+        &__description {
+            max-width: 500px;
+            width: 100%;
+        }
+    }
+}

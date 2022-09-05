@@ -1,0 +1,45 @@
+<mat-toolbar>
+  <div>
+    <a routerLink="" class="navigation-logo">
+      <img src="assets/images/rocket.svg" alt="">
+      <h1>RSLang</h1>
+    </a>
+  </div>
+  <div fxFlex fxLayout fxLayoutAlign="end" fxHide.xs>
+    <ul fxLayout fxLayoutGap="15px" class="navigation-items">
+      <li>
+        <a routerLink="">Home</a>
+      </li>
+      <li>
+        <a routerLink="/textbook">Textbook</a>
+      </li>
+      <li>
+        <a routerLink="/games">Games</a>
+      </li>
+      <li>
+        <a routerLink="/statistics">Statistics</a>
+      </li>
+      <li>
+        <button mat-icon-button (click)="startAuth()" *ngIf="!isLogin">
+          <mat-icon color="primary">login</mat-icon>
+        </button>
+        <span *ngIf="isLogin">
+          <button mat-icon-button [matMenuTriggerFor]="menu">
+            <mat-icon color="primary">person</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="logout()">
+              <mat-icon>logout</mat-icon>
+              <span>Sign out</span>
+            </button>
+          </mat-menu>
+        </span>
+      </li>
+    </ul>
+  </div>
+  <div fxHide.gt-xs>
+    <button mat-icon-button (click)="onToggleSidenav()">
+      <mat-icon class="menu-button">menu</mat-icon>
+    </button>
+  </div>
+</mat-toolbar>

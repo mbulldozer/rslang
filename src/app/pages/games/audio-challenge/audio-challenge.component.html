@@ -1,0 +1,51 @@
+<section class="audio-challenge">
+  <button mat-fab color="accent" class="fullscreen" (click)="toogleFullScreen()">
+    <mat-icon>{{!isFullScreen ? 'fullscreen' : 'fullscreen_exit'}}</mat-icon>
+  </button>
+  <app-difficulty-selection *ngIf="stage === 'difficulty-selection'" title="audio-challenge"></app-difficulty-selection>
+  <app-game-results *ngIf="stage === 'results'" title="audio-challenge"></app-game-results>
+  <div class="game-level" *ngIf="stage === 'level-start' || stage === 'level-end'">
+    <mat-progress-bar class="progress-bar" mode="determinate" color="warn" [value]="progress"></mat-progress-bar>
+    <div class="content">
+      <button mat-fab color="accent" class="audio icon-button-large"
+              *ngIf="stage === 'level-start'"
+              (click)="playWord()">
+        <mat-icon class="audio-icon">volume_up</mat-icon>
+      </button>
+      <mat-card class="word-info" *ngIf="stage === 'level-end'">
+        <mat-card-content class="word-info-content">
+          <img mat-card-image
+               [src]="getImageSrc()"
+               [alt]="word?.word">
+          <mat-list>
+            <mat-list-item>
+              <mat-icon mat-list-icon class="word-info_audio" (click)="playWord()">volume_up</mat-icon>
+              <div mat-line>{{word?.word}}</div>
+            </mat-list-item>
+            <mat-list-item>
+              <mat-icon mat-list-icon>g_translate</mat-icon>
+              <div mat-line>{{word?.wordTranslate}}</div>
+            </mat-list-item>
+            <mat-list-item>
+              <mat-icon mat-list-icon class="word-info_audio" (click)="playMeaning()">volume_up</mat-icon>
+              <div mat-line [innerHTML]="word?.textMeaning"></div>
+            </mat-list-item>
+            <mat-list-item>
+              <mat-icon mat-list-icon>g_translate</mat-icon>
+              <div mat-line>{{word?.textMeaningTranslate}}</div>
+            </mat-list-item>
+          </mat-list>
+        </mat-card-content>
+      </mat-card>
+      <div class="answer-options">
+        <button mat-raised-button
+                *ngFor="let answer of answers; let i = index"
+                class="{{answer.status}}"
+                (click)="selectAnswer(answer.word)">
+          {{i + 1}}. {{answer.word}}
+        </button>
+      </div>
+      <button mat-raised-button (click)="nextRound()">{{stage === 'level-end' ? 'Next' : 'Skip'}}</button>
+    </div>
+  </div>
+</section>

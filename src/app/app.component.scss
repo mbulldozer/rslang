@@ -1,0 +1,27 @@
+mat-sidenav-container, mat-sidenav-content, mat-sidenav {
+  height: 100%;
+  background: transparent;
+}
+
+mat-sidenav {
+  width: 250px;
+}
+
+main {
+  min-height: calc(100% - 192px);
+}
+
+.game {
+  min-height: calc(100% - 114px);
+}
+
+.container {
+  margin: 0 auto;
+}
+
+.game {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
