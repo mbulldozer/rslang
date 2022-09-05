@@ -1,7 +1,7 @@
-import {Component, Input, OnInit} from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import AudioChallengeService from '../../services/audio-challenge.service';
-import SprintService from "../../services/sprint.service";
-import GamesConstants from "../../common/games-constants";
+import SprintService from '../../services/sprint.service';
+import GamesConstants from '../../common/games-constants';
 
 @Component({
   selector: 'app-difficulty-selection',

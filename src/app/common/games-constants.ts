@@ -1,4 +1,4 @@
-import {IAudioChallengeState, ISprintState} from '../models/games';
+import { IAudioChallengeState, ISprintState } from '../models/games';
 
 export default class GamesConstants {
   static difficulties = [1, 2, 3, 4, 5, 6];
@@ -8,12 +8,12 @@ export default class GamesConstants {
   static sprintDesc = {
     title: 'Sprint',
     desc: 'Choose whether the translation matches the suggested word',
-  }
+  };
 
   static audioChallengeDesc = {
     title: 'Audio Challenge',
     desc: 'Choose from the suggested answers the correct translation of the word you hear',
-  }
+  };
 
   static initState: IAudioChallengeState = {
     stage: 'difficulty-selection',
@@ -26,5 +26,5 @@ export default class GamesConstants {
     usedWords: [],
     answer: '',
     score: 0,
-  }
+  };
 }

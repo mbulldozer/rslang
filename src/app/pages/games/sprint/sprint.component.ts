@@ -1,38 +1,40 @@
-import {Component, OnInit, Renderer2} from '@angular/core';
-import {IWord, Stage} from "../../../models/games";
-import AudioService from "../../../services/audio.service";
-import GamesConstants from "../../../common/games-constants";
-import GlobalConstants from "../../../common/global-constants";
-import SprintService from "../../../services/sprint.service";
-import TimerService from "../../../services/timer.service";
-import {animate, state, style, transition, trigger} from "@angular/animations";
+import { Component, OnInit, Renderer2 } from '@angular/core';
+import {
+  animate, state, style, transition, trigger,
+} from '@angular/animations';
+import { IWord, Stage } from '../../../models/games';
+import AudioService from '../../../services/audio.service';
+import GamesConstants from '../../../common/games-constants';
+import GlobalConstants from '../../../common/global-constants';
+import SprintService from '../../../services/sprint.service';
+import TimerService from '../../../services/timer.service';
 
 @Component({
   selector: 'app-sprint',
   animations: [
     trigger('status', [
       state('default', style({
-        boxShadow: 'rgba(0, 130, 163, 0.35) 0 3px 8px'
+        boxShadow: 'rgba(0, 130, 163, 0.35) 0 3px 8px',
       })),
       state('mistake', style({
-        boxShadow: 'rgba(255, 0, 0, 0.44) 0 5px 10px'
+        boxShadow: 'rgba(255, 0, 0, 0.44) 0 5px 10px',
       })),
       state('correct', style({
-        boxShadow: 'rgba(0, 255, 0, 0.44) 0 5px 10px'
+        boxShadow: 'rgba(0, 255, 0, 0.44) 0 5px 10px',
       })),
       transition('default <=> correct', [
-        animate('0.5s')
+        animate('0.5s'),
       ]),
       transition('default <=> mistake', [
-        animate('0.5s')
+        animate('0.5s'),
       ]),
       transition('correct <=> mistake', [
-        animate('0.5s')
+        animate('0.5s'),
       ]),
     ]),
   ],
   templateUrl: './sprint.component.html',
-  styleUrls: ['./sprint.component.scss']
+  styleUrls: ['./sprint.component.scss'],
 })
 export default class SprintComponent implements OnInit {
   stage: Stage;
@@ -91,7 +93,7 @@ export default class SprintComponent implements OnInit {
         if (this.timer === 0) {
           this.gamesService.finishGame();
         }
-    })
+      });
   }
 
   playWord() {
@@ -100,8 +102,8 @@ export default class SprintComponent implements OnInit {
   }
 
   selectAnswer(answer: boolean) {
-      this.status = this.gamesService.selectAnswer(answer) ? 'correct' : 'mistake';
-      console.log(this.status);
+    this.status = this.gamesService.selectAnswer(answer) ? 'correct' : 'mistake';
+    console.log(this.status);
   }
 
   toogleFullScreen() {

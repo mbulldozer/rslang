@@ -26,8 +26,8 @@ import DifficultySelectionComponent from './components/difficulty-selection/diff
 import GameResultsComponent from './components/game-results/game-results.component';
 import TimerService from './services/timer.service';
 import GamesComponent from './pages/games/games.component';
-import SprintComponent from "./pages/games/sprint/sprint.component";
-import SprintService from "./services/sprint.service";
+import SprintComponent from './pages/games/sprint/sprint.component';
+import SprintService from './services/sprint.service';
 
 @NgModule({
   declarations: [
@@ -46,7 +46,7 @@ import SprintService from "./services/sprint.service";
     DifficultySelectionComponent,
     GameResultsComponent,
     GamesComponent,
-    SprintComponent
+    SprintComponent,
   ],
   imports: [
     BrowserModule,

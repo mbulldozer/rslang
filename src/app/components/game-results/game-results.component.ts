@@ -1,10 +1,10 @@
-import {Component, Input, OnInit} from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ThemePalette } from '@angular/material/core';
 import { ProgressSpinnerMode } from '@angular/material/progress-spinner';
 import AudioChallengeService from '../../services/audio-challenge.service';
 import AudioService from '../../services/audio.service';
 import GlobalConstants from '../../common/global-constants';
-import SprintService from "../../services/sprint.service";
+import SprintService from '../../services/sprint.service';
 
 @Component({
   selector: 'app-game-results',
@@ -13,6 +13,7 @@ import SprintService from "../../services/sprint.service";
 })
 export default class GameResultsComponent implements OnInit {
   @Input() title: string | undefined;
+
   @Input() score: string | undefined;
 
   correctAnswers: any[] = [];

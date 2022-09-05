@@ -6,7 +6,7 @@ import HomeComponent from '../pages/home/home.component';
 import TextbookComponent from '../pages/textbook/textbook.component';
 import GamesComponent from '../pages/games/games.component';
 import AudioChallengeComponent from '../pages/games/audio-challenge/audio-challenge.component';
-import SprintComponent from "../pages/games/sprint/sprint.component";
+import SprintComponent from '../pages/games/sprint/sprint.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },

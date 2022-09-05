@@ -17,7 +17,7 @@ export default class AppComponent {
       if (this._router.url.includes(route)) {
         isInclude = true;
       }
-    })
+    });
     return isInclude;
   }
 }

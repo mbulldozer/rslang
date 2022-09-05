@@ -1,13 +1,13 @@
-import {Injectable} from '@angular/core';
-import {BehaviorSubject} from 'rxjs';
+import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
-import { ISprintState, IWord } from "../models/games";
-import GamesConstants from "../common/games-constants";
-import GlobalConstants from "../common/global-constants";
-import TimerService from "./timer.service";
+import { ISprintState, IWord } from '../models/games';
+import GamesConstants from '../common/games-constants';
+import GlobalConstants from '../common/global-constants';
+import TimerService from './timer.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export default class SprintService {
   private gameState: BehaviorSubject<ISprintState> = new BehaviorSubject(GamesConstants.initSprintState);
