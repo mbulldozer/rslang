@@ -4,10 +4,10 @@
   </mat-sidenav>
   <mat-sidenav-content>
     <app-header (sidenavToggle)="sidenav.toggle()"></app-header>
-    <main [ngClass]="{'game' : hasRoute('audio-challenge')}">
+    <main [ngClass]="{'game' : hasRoute(['audio-challenge', 'sprint'])}">
       <router-outlet></router-outlet>
     </main>
-    <app-footer *ngIf="!hasRoute('audio-challenge')"></app-footer>
+    <app-footer *ngIf="!hasRoute(['audio-challenge', 'sprint'])"></app-footer>
   </mat-sidenav-content>
 </mat-sidenav-container>
 

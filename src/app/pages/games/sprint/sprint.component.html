@@ -1,0 +1,7 @@
+<section class="sprint">
+  <button mat-fab color="accent" class="fullscreen" (click)="toogleFullScreen()">
+    <mat-icon>{{!isFullScreen ? 'fullscreen' : 'fullscreen_exit'}}</mat-icon>
+  </button>
+  <app-difficulty-selection *ngIf="stage === 'difficulty-selection'" title="sprint"></app-difficulty-selection>
+  <app-game-results *ngIf="stage === 'results'"></app-game-results>
+</section>

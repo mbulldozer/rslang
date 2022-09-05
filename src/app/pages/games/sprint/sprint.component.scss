@@ -1,0 +1,16 @@
+.sprint {
+  padding-bottom: 40px;
+}
+
+.fullscreen {
+  position: absolute;
+  top: -28px;
+  right: 28px;
+
+  background-color: #303030;
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    background-color: #565656;
+  }
+}
