@@ -20,9 +20,9 @@
         <p  class="card__description__example" *ngIf="translate" [innerHtml]="item.textExampleTranslate"></p>
 
         <div class="card__buttons" *ngIf="isLogin">
-            <button class="card__button-difficult" (click)="addToDifficult(item.id)" *ngIf="!difficult" [disabled]="item.difficult ? 'disabled': null">Добавить в сложные</button>
-            <button class="card__button-difficult" (click)="deleteFromDifficult(item._id)" *ngIf="difficult" >Удалить из сложных</button>
-            <button class="card__button-studied" *ngIf="!difficult" (click)="studiedWord(item.id)" [disabled]="item.studied? 'disabled': null">Изучено</button>
+            <button class="card__button-difficult" (click)="addToDifficult(item.id)" *ngIf="!difficult" [disabled]="item.difficult ? 'disabled': null">Add to difficult</button>
+            <button class="card__button-difficult" (click)="deleteFromDifficult(item._id)" *ngIf="difficult" >Delete from difficult</button>
+            <button class="card__button-studied" *ngIf="!difficult" (click)="studiedWord(item.id)" [disabled]="item.studied? 'disabled': null">Studied</button>
         </div>
     </div>
 </div>
