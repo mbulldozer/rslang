@@ -20,6 +20,8 @@ export default class TextBookService {
 
   constructor(private http: HttpClient) { }
 
+  public countWords$ = new Subject<number>();
+
   public aggregateDate$ = new Subject<Word[]>();
 
   public loadData$ = new Subject<Word[]>();
@@ -121,5 +123,9 @@ export default class TextBookService {
 
   getCardFromAggregate(data: Word[]) {
     this.aggregateDate$.next(data);
+  }
+
+  countUserWords(quantity: number) {
+    this.countWords$.next(quantity);
   }
 }

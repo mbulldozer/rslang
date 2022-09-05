@@ -38,6 +38,7 @@ export default class AuthService {
     localStorage.setItem('login', 'null');
     localStorage.setItem('page', 'null');
     this.loginDataSubject.next(null);
+    document.location.reload();
   }
 
   registration(data: RegistrationType): Observable<RegistrationType> {

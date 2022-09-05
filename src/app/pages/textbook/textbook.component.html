@@ -38,7 +38,7 @@
           </label>  
     </div>
 
-    <div class="pagination" *ngIf="cardActive !== 0 && cardActive !== 7">
+    <div class="pagination" *ngIf="cardActive !== 0 && cardActive !== 7" [ngStyle]="count === 20 ? {'color': 'gold'}: {'color': 'white'}">
         <div class="pagination__left" (click)="paginationLeft()" ></div>
         Page {{page}} of 30 
         <div class="pagination__right" (click)="paginationRight()" ></div>
@@ -46,9 +46,10 @@
 
     <app-word-card class="cards"></app-word-card>
 
-    <div class="pagination" *ngIf="cardActive !== 0 && cardActive !== 7">
+    <div class="pagination" *ngIf="cardActive !== 0 && cardActive !== 7" [ngStyle]="count === 20 ? {'color': 'gold'}: {'color': 'white'}" >
         <div class="pagination__left" (click)="paginationLeft()" ></div>
         Page {{page}} of 30 
-        <div class="pagination__right" (click)="paginationRight()" ></div>        
+        <div class="pagination__right" (click)="paginationRight()" ></div>  
+            
     </div>
 </section>

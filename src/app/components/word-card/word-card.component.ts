@@ -140,6 +140,7 @@ export default class WordCardComponent implements OnInit {
   }
 
   getStudiedtWords() {
+    let count = 0;
     const items = [...this.card];
     let response: any = [];
     this.authService.loginData$.subscribe((value) => {
@@ -158,6 +159,12 @@ export default class WordCardComponent implements OnInit {
                 }
               }
             });
+            for (let i = 0; i < this.card.length; i += 1) {
+              if (this.card[i].studied === 'visible') {
+                count += 1;
+              }
+            }
+            this.textBookService.countUserWords(count);
           });
       }
     });

@@ -21,13 +21,20 @@ export default class TextbookComponent implements OnInit {
 
   userId: string = '';
 
+  count: number = 0;
+
   constructor(private readonly textBookService: TextBookService, private authService: AuthService) {
 
   }
 
   ngOnInit(): void {
     this.authService.loginData$.subscribe((data) => { this.isLogin = !!data; });
+    this.textBookService.countWords$.subscribe((data) => this.changeColor(data));
     this.afterReloadInit();
+  }
+
+  changeColor(count: number) {
+    this.count = count;
   }
 
   protected afterReloadInit() {
